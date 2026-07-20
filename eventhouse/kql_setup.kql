@@ -1,0 +1,69 @@
+// Eventhouse: eh_freight | KQL Database: kdb_telematics
+// Eventstream es_telematics routes the custom endpoint source directly to raw_pings.
+
+// 1. Landing table (matches the JSON emitted by stream_telematics.py)
+.create table raw_pings (
+    truck_id: string, carrier_id: string, shipment_id: string,
+    ts: datetime, lat: real, lon: real, speed_kph: real,
+    temp_c: real, fuel_pct: real, event_type: string
+)
+
+.create table raw_pings ingestion json mapping 'pings_mapping'
+'[{"column":"truck_id","path":"$.truck_id"},{"column":"carrier_id","path":"$.carrier_id"},{"column":"shipment_id","path":"$.shipment_id"},{"column":"ts","path":"$.ts"},{"column":"lat","path":"$.lat"},{"column":"lon","path":"$.lon"},{"column":"speed_kph","path":"$.speed_kph"},{"column":"temp_c","path":"$.temp_c"},{"column":"fuel_pct","path":"$.fuel_pct"},{"column":"event_type","path":"$.event_type"}]'
+
+// 2. Update policy: enrich alerts into their own table at ingest time.
+//    This is the DP-700 pattern worth demonstrating: transformation happens
+//    inside the Eventhouse, not in a downstream batch job.
+.create table alerts (
+    truck_id: string, carrier_id: string, shipment_id: string,
+    ts: datetime, alert_type: string, detail: string, severity: string
+)
+
+.create function fn_extract_alerts() {
+    raw_pings
+    | where event_type in ('harsh_brake', 'route_deviation') or temp_c > 8.0
+    | extend alert_type = case(
+        temp_c > 8.0, 'reefer_temp_excursion',
+        event_type == 'harsh_brake', 'harsh_brake',
+        'route_deviation'),
+      detail = case(
+        temp_c > 8.0, strcat('temp=', tostring(temp_c), 'C'),
+        strcat('speed=', tostring(speed_kph), 'kph')),
+      severity = iff(temp_c > 10.0, 'critical', 'warning')
+    | project truck_id, carrier_id, shipment_id, ts, alert_type, detail, severity
+}
+
+.alter table alerts policy update
+'[{"IsEnabled": true, "Source": "raw_pings", "Query": "fn_extract_alerts()", "IsTransactional": false}]'
+
+// 3. Materialized view: latest known position per truck, powers the live map tile
+.create materialized-view LatestPosition on table raw_pings {
+    raw_pings
+    | summarize arg_max(ts, lat, lon, speed_kph, fuel_pct, temp_c) by truck_id
+}
+
+// 4. Dashboard queries
+
+// Active reefer excursions in the last 15 minutes
+alerts
+| where alert_type == 'reefer_temp_excursion' and ts > ago(15m)
+| summarize excursions = count(), max_temp = maxif(todouble(extract(@'temp=([\d.]+)', 1, detail)), true) by carrier_id
+| order by excursions desc
+
+// Alert rate per carrier over trailing hour, binned per 5 minutes
+alerts
+| where ts > ago(1h)
+| summarize alerts = count() by carrier_id, bin(ts, 5m)
+| render timechart
+
+// Fleet speed distribution vs harsh-brake incidence
+raw_pings
+| where ts > ago(1h)
+| summarize avg_speed = avg(speed_kph),
+            harsh_brakes = countif(event_type == 'harsh_brake') by truck_id
+| order by harsh_brakes desc
+
+// 5. Activator (set up in UI, documented here):
+//    Source: alerts table | Condition: severity == 'critical'
+//    Action: email + Teams message with truck_id, shipment_id, detail
+//    Second rule: alerts count by carrier_id > 5 within 10m -> escalate

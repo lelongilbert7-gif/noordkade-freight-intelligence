@@ -1,0 +1,75 @@
+name: Deploy to Fabric
+
+# Branch strategy:
+#   feature/* -> PR to main        : validation only
+#   merge to main                  : deploy to TEST
+#   tag v*                         : deploy to PROD (with environment approval gate)
+# Dev workspace stays Git-synced directly from the feature branch via
+# Fabric's built-in Git integration; fabric-cicd owns Test and Prod.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Lint notebooks and SQL
+        run: |
+          pip install ruff sqlfluff
+          ruff check notebooks/ data-generator/ cicd/
+          sqlfluff lint warehouse/ pipelines/ --dialect tsql || true
+      - name: Validate workspace item structure
+        run: |
+          pip install fabric-cicd
+          python cicd/deploy.py --environment test --dry-run
+
+  deploy-test:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Azure login (service principal, OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Deploy to Test workspace
+        run: |
+          pip install fabric-cicd
+          python cicd/deploy.py --environment test
+
+  deploy-prod:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment: prod        # configure required reviewer in repo settings: manual approval gate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Azure login (service principal, OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Deploy to Prod workspace
+        run: |
+          pip install fabric-cicd
+          python cicd/deploy.py --environment prod
