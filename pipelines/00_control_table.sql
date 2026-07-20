@@ -46,7 +46,7 @@ CREATE TABLE etl.pipeline_run_log (
     load_date     DATE,
     rows_loaded   INT,
     status        VARCHAR(20),      -- Succeeded | Failed | DQFailed
-    started_utc   DATETIME2,
-    ended_utc     DATETIME2,
+    started_utc   DATETIME2(6),
+    ended_utc     DATETIME2(6),
     error_message VARCHAR(4000)
 );
