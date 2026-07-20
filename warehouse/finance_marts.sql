@@ -20,7 +20,7 @@ CREATE TABLE mart.carrier_scorecard_monthly (
     margin_pct        DECIMAL(6,3),
     cost_per_km_eur   DECIMAL(8,3),
     otd_pct           DECIMAL(6,3),
-    snapshot_utc      DATETIME2 DEFAULT SYSUTCDATETIME()
+    snapshot_utc      DATETIME2(6) DEFAULT SYSUTCDATETIME()
 );
 GO
 
