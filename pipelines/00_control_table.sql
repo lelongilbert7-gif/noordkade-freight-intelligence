@@ -22,7 +22,7 @@ GO
 INSERT INTO etl.ingestion_control VALUES
 ('dim_carriers',   'carriers',   'csv', 'full',        NULL,        NULL,                  1, 10, 'nb_silver_dims'),
 ('dim_lanes',      'lanes',      'csv', 'full',        NULL,        NULL,                  1, 10, 'nb_silver_dims'),
-('fuel_purchases', 'fuel',       'csv', 'incremental', 'purchase_date', '2025-01-01',      1, 20, 'nb_silver_fuel'),
+('fuel_purchases', 'fuel',       'csv', 'full',        NULL,        NULL,                  1, 20, 'nb_silver_fuel'),
 ('shipments',      'shipments',  'csv', 'incremental', 'pickup_ts', '2025-01-01T00:00:00', 1, 30, 'nb_silver_shipments');
 GO
 
