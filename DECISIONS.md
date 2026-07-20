@@ -25,3 +25,12 @@ The Fabric trial throttles under concurrent Spark sessions (observed TooManyRequ
 
 ## ADR-008: Calculation group over duplicated time-intelligence measures
 Eight base measures with five time flavors is forty measures to maintain by hand, or one calculation group. The trade-off (format string handling, precedence complexity) is acceptable at this model size and the maintenance saving compounds as measures are added.
+## ADR-009: Lowercase-only naming convention for landing folders
+OneLake paths are case-sensitive. During the first pipeline run, the copy
+activity failed with PathNotFound because the landing folder had been created
+as `Carriers` while the control table said `carriers`. Rather than making the
+pipeline tolerant of case variations (which hides inconsistency), the
+convention is: all landing folder names are lowercase, and the control table
+is the single source of truth for spelling. The fix was validated with a
+targeted rerun using the TableFilter parameter — one table reloaded without
+touching the other three, confirming the framework's surgical-rerun design.
