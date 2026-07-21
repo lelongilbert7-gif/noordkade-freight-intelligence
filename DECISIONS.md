@@ -45,3 +45,13 @@ hop per iteration. Lesson learned during implementation: a notebook's
 parameters cell must be explicitly toggled in every notebook in the chain —
 an untoggled cell silently runs its hardcoded defaults, which produced a
 bronze_ (empty table name) failure diagnosed from the activity's Input JSON.
+## ADR-011: DQ gate binds directly, not via the dispatcher
+The data quality notebook is invoked directly by the pipeline rather than
+through nb_silver_dispatch. The dispatcher exists to solve metadata-driven
+notebook selection inside the ForEach; the DQ gate is a fixed checkpoint
+with no selection to make, so direct binding removes an unnecessary session
+hop. Known trade-off, accepted for now: the shipments watermark advances
+per-iteration before the gate runs, so a day that loads but fails DQ leaves
+the watermark advanced. Mitigations: silver remains inspectable, row-level
+issues land in quarantine, and the gate blocks the gold refresh — the
+watermark can be manually rewound with one UPDATE if a full replay is needed.
