@@ -81,17 +81,27 @@ Inside the ForEach, every reference to the current table uses `@item()`:
 
 ### Notebook activity: `NB_SilverTransform`
 
-- Notebook: `@item().notebook_name` — the notebook itself is selected dynamically from metadata.
-- Base parameters:
+The Fabric Notebook activity binds to a fixed notebook ID, so it cannot select
+a notebook by name from metadata directly. The activity therefore always
+invokes `nb_silver_dispatch`, a thin dispatcher that runs the child notebook
+named in the control table via `notebookutils.notebook.run()`, forwarding all
+parameters and returning the child's exit value (the watermark) unchanged.
+See ADR-010.
+
+- Notebook: `nb_silver_dispatch` (fixed)
+- Base parameters (all String):
 
 | Name | Value |
 |---|---|
+| `p_notebook_name` | `@item().notebook_name` |
 | `p_table_name` | `@item().table_name` |
 | `p_load_date` | `@variables('v_load_date')` |
 | `p_environment` | `@pipeline().parameters.Environment` |
-| `p_is_full` | `@pipeline().parameters.IsFullReload` |
+| `p_is_full` | `@string(pipeline().parameters.IsFullReload)` |
 
-The notebook's first cell is toggled as a **parameters cell**, so these override the defaults (see `notebooks/`).
+The first cell of the dispatcher AND of every child notebook must be toggled
+as a **parameters cell** — an untoggled cell silently runs its hardcoded
+defaults instead of the injected values.
 
 ### Script activity: `SP_UpdateWatermark`
 
