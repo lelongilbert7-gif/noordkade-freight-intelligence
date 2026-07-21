@@ -4,10 +4,6 @@
 -- Rationale in DECISIONS.md: the finance persona works in T-SQL, and the
 -- monthly close needs stable snapshot tables, not live Direct Lake views.
 
-CREATE SCHEMA mart;
-GO
-
--- Monthly carrier scorecard: the table procurement uses in rate negotiations
 CREATE TABLE mart.carrier_scorecard_monthly (
     year_month        CHAR(7)      NOT NULL,
     carrier_id        VARCHAR(10)  NOT NULL,
@@ -20,12 +16,12 @@ CREATE TABLE mart.carrier_scorecard_monthly (
     margin_pct        DECIMAL(6,3),
     cost_per_km_eur   DECIMAL(8,3),
     otd_pct           DECIMAL(6,3),
-    snapshot_utc      DATETIME2(6) DEFAULT SYSUTCDATETIME()
+    snapshot_utc      DATETIME2(6) NOT NULL
 );
 GO
 
 CREATE PROCEDURE mart.build_carrier_scorecard
-    @year_month CHAR(7)          -- e.g. '2026-06'
+    @year_month CHAR(7)
 AS
 BEGIN
     DELETE FROM mart.carrier_scorecard_monthly WHERE year_month = @year_month;
@@ -33,7 +29,7 @@ BEGIN
     INSERT INTO mart.carrier_scorecard_monthly
         (year_month, carrier_id, carrier_name, shipments, total_km,
          total_cost_eur, total_revenue_eur, margin_eur, margin_pct,
-         cost_per_km_eur, otd_pct)
+         cost_per_km_eur, otd_pct, snapshot_utc)
     SELECT
         @year_month,
         f.carrier_id,
@@ -45,7 +41,8 @@ BEGIN
         SUM(f.margin_eur),
         ROUND(SUM(f.margin_eur) / NULLIF(SUM(f.customer_revenue_eur), 0), 3),
         ROUND(SUM(f.total_cost_eur) / NULLIF(SUM(CAST(f.distance_km AS BIGINT)), 0), 3),
-        ROUND(AVG(CAST(f.on_time_flag AS DECIMAL(3,1))), 3)
+        ROUND(AVG(CAST(f.on_time_flag AS DECIMAL(3,1))), 3),
+        SYSUTCDATETIME()
     FROM lh_freight.dbo.gold_fact_shipments f
     JOIN lh_freight.dbo.gold_dim_carriers c ON c.carrier_id = f.carrier_id
     WHERE FORMAT(f.pickup_ts, 'yyyy-MM') = @year_month
@@ -53,8 +50,6 @@ BEGIN
 END;
 GO
 
--- Lane profitability with window functions: rank lanes and flag the
--- bottom decile for the commercial team to reprice
 CREATE VIEW mart.v_lane_profitability AS
 WITH lane_agg AS (
     SELECT
@@ -74,4 +69,3 @@ SELECT *,
     CASE WHEN NTILE(10) OVER (ORDER BY margin_pct DESC) = 10
          THEN 1 ELSE 0 END                               AS reprice_flag
 FROM lane_agg;
-GO
