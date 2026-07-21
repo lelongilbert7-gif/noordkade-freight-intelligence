@@ -34,3 +34,14 @@ convention is: all landing folder names are lowercase, and the control table
 is the single source of truth for spelling. The fix was validated with a
 targeted rerun using the TableFilter parameter — one table reloaded without
 touching the other three, confirming the framework's surgical-rerun design.
+## ADR-010: Dispatcher notebook for dynamic notebook selection
+The Fabric Notebook activity binds to a specific notebook ID, which prevents
+selecting the notebook by name from control-table metadata. A dispatcher
+notebook bridges this: the pipeline always invokes nb_silver_dispatch, which
+uses notebookutils.notebook.run() to execute the child named in the control
+table's notebook_name column, forwarding all parameters and returning the
+child's exit value (the watermark) unchanged. Trade-off: one extra session
+hop per iteration. Lesson learned during implementation: a notebook's
+parameters cell must be explicitly toggled in every notebook in the chain —
+an untoggled cell silently runs its hardcoded defaults, which produced a
+bronze_ (empty table name) failure diagnosed from the activity's Input JSON.
