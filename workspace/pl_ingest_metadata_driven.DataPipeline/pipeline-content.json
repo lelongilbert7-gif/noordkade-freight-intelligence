@@ -1,0 +1,552 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "v_load_date",
+          "value": {
+            "value": "@if(equals(pipeline().parameters.LoadDate, ''), formatDateTime(addDays(utcNow(), -1), 'yyyy-MM-dd'), pipeline().parameters.LoadDate)",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "SV_LoadDate",
+        "dependsOn": []
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": {
+              "value": "SELECT table_name, source_folder, source_format, load_type,\n       watermark_column, watermark_value, notebook_name\nFROM etl.ingestion_control\nWHERE is_active = 1\n  AND ('@{pipeline().parameters.TableFilter}' = '*'\n       OR table_name = '@{pipeline().parameters.TableFilter}')\nORDER BY priority",
+              "type": "Expression"
+            },
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "linkedService": {
+              "name": "wh_freight",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "1705f5ef-dd93-ab3f-4594-ecfaeb4375c3",
+                  "endpoint": "lwsglahv627ubizk77bqp37sty-4jvcg7vd2y7elpgv7rkmj52tuu.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "LKP_GetTables",
+        "dependsOn": [
+          {
+            "activity": "SV_LoadDate",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('LKP_GetTables').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "IfCondition",
+              "typeProperties": {
+                "expression": {
+                  "value": "@and(equals(item().load_type, 'incremental'), not(pipeline().parameters.IsFullReload))",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "type": "Copy",
+                    "typeProperties": {
+                      "source": {
+                        "type": "DelimitedTextSource",
+                        "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                        },
+                        "storeSettings": {
+                          "type": "LakehouseReadSettings",
+                          "recursive": true,
+                          "wildcardFolderPath": {
+                            "value": "@concat('landing/', item().source_folder, '/', formatDateTime(variables('v_load_date'), 'yyyy/MM/dd'))",
+                            "type": "Expression"
+                          },
+                          "wildcardFileName": "*.csv",
+                          "enablePartitionDiscovery": false
+                        },
+                        "datasetSettings": {
+                          "type": "DelimitedText",
+                          "typeProperties": {
+                            "location": {
+                              "type": "LakehouseLocation"
+                            },
+                            "columnDelimiter": ",",
+                            "quoteChar": "\"",
+                            "escapeChar": "\\",
+                            "firstRowAsHeader": true
+                          },
+                          "schema": [],
+                          "linkedService": {
+                            "name": "lh_freight",
+                            "properties": {
+                              "type": "Lakehouse",
+                              "typeProperties": {
+                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                                "rootFolder": "Files"
+                              },
+                              "annotations": []
+                            }
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "sink": {
+                        "type": "LakehouseTableSink",
+                        "tableActionOption": "Append",
+                        "applyVOrder": false,
+                        "datasetSettings": {
+                          "type": "LakehouseTable",
+                          "typeProperties": {
+                            "table": {
+                              "value": "@concat('bronze_', item().table_name)",
+                              "type": "Expression"
+                            }
+                          },
+                          "schema": [],
+                          "linkedService": {
+                            "name": "lh_freight",
+                            "properties": {
+                              "type": "Lakehouse",
+                              "typeProperties": {
+                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                                "rootFolder": "Tables"
+                              },
+                              "annotations": []
+                            }
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                        }
+                      },
+                      "enableStaging": false
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "CP_IncrementalToBronze",
+                    "dependsOn": []
+                  }
+                ],
+                "ifFalseActivities": [
+                  {
+                    "type": "Copy",
+                    "typeProperties": {
+                      "source": {
+                        "type": "DelimitedTextSource",
+                        "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                        },
+                        "storeSettings": {
+                          "type": "LakehouseReadSettings",
+                          "recursive": true,
+                          "wildcardFolderPath": {
+                            "value": "@concat('landing/', item().source_folder)",
+                            "type": "Expression"
+                          },
+                          "wildcardFileName": "*.csv",
+                          "enablePartitionDiscovery": false
+                        },
+                        "datasetSettings": {
+                          "type": "DelimitedText",
+                          "typeProperties": {
+                            "location": {
+                              "type": "LakehouseLocation"
+                            },
+                            "columnDelimiter": ",",
+                            "quoteChar": "\"",
+                            "escapeChar": "\\",
+                            "firstRowAsHeader": true
+                          },
+                          "schema": [],
+                          "linkedService": {
+                            "name": "lh_freight",
+                            "properties": {
+                              "type": "Lakehouse",
+                              "typeProperties": {
+                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                                "rootFolder": "Files"
+                              },
+                              "annotations": []
+                            }
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "sink": {
+                        "type": "LakehouseTableSink",
+                        "tableActionOption": "Append",
+                        "applyVOrder": false,
+                        "datasetSettings": {
+                          "type": "LakehouseTable",
+                          "typeProperties": {
+                            "table": {
+                              "value": "@concat('bronze_', item().table_name)",
+                              "type": "Expression"
+                            }
+                          },
+                          "schema": [],
+                          "linkedService": {
+                            "name": "lh_freight",
+                            "properties": {
+                              "type": "Lakehouse",
+                              "typeProperties": {
+                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                                "rootFolder": "Tables"
+                              },
+                              "annotations": []
+                            }
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                        }
+                      },
+                      "enableStaging": false
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "CP_FullToBronze",
+                    "dependsOn": []
+                  }
+                ]
+              },
+              "name": "IF_LoadType",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "fa026185-8ccc-9ca5-4957-5b72903e9a77",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "p_notebook_name": {
+                    "value": {
+                      "value": "@item().notebook_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "p_table_name": {
+                    "value": {
+                      "value": "@item().table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "p_load_date": {
+                    "value": {
+                      "value": "@variables('v_load_date')",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "p_environment": {
+                    "value": {
+                      "value": "@pipeline().parameters.Environment",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "p_is_full": {
+                    "value": {
+                      "value": "@string(pipeline().parameters.IsFullReload)",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "NB_SilverTransform",
+              "dependsOn": [
+                {
+                  "activity": "IF_LoadType",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "IfCondition",
+              "typeProperties": {
+                "expression": {
+                  "value": "@equals(item().load_type, 'incremental')",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "type": "Script",
+                    "typeProperties": {
+                      "scripts": [
+                        {
+                          "text": {
+                            "value": "EXEC etl.update_watermark @table_name = '@{item().table_name}', @new_value = '@{activity('NB_SilverTransform').output.result.exitValue}'",
+                            "type": "Expression"
+                          },
+                          "type": "NonQuery"
+                        }
+                      ],
+                      "scriptBlockExecutionTimeout": "02:00:00"
+                    },
+                    "linkedService": {
+                      "name": "wh_freight",
+                      "properties": {
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                          "artifactId": "1705f5ef-dd93-ab3f-4594-ecfaeb4375c3",
+                          "endpoint": "lwsglahv627ubizk77bqp37sty-4jvcg7vd2y7elpgv7rkmj52tuu.datawarehouse.fabric.microsoft.com",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "SP_UpdateWatermark",
+                    "dependsOn": []
+                  }
+                ],
+                "ifFalseActivities": []
+              },
+              "name": "IF_UpdateWatermark",
+              "dependsOn": [
+                {
+                  "activity": "NB_SilverTransform",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "FE_PerTable",
+        "dependsOn": [
+          {
+            "activity": "LKP_GetTables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "75df3f73-b112-9dd5-40a8-bd8f08c9bb15",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "p_load_date": {
+              "value": {
+                "value": "@variables('v_load_date')",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "p_environment": {
+              "value": {
+                "value": "@pipeline().parameters.Environment",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "p_is_full": {
+              "value": {
+                "value": "@string(pipeline().parameters.IsFullReload)",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "NB_DataQuality",
+        "dependsOn": [
+          {
+            "activity": "FE_PerTable",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "178c0a84-d373-b3dc-46cb-729febed9d1a",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "p_environment": {
+              "value": {
+                "value": "@pipeline().parameters.Environment",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "NB_GoldBuild",
+        "dependsOn": [
+          {
+            "activity": "NB_DataQuality",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Script",
+        "typeProperties": {
+          "scripts": [
+            {
+              "text": {
+                "value": "EXEC mart.build_carrier_scorecard @year_month = '@{formatDateTime(variables('v_load_date'), 'yyyy-MM')}'",
+                "type": "Expression"
+              },
+              "type": "NonQuery"
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        },
+        "linkedService": {
+          "name": "wh_freight",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "1705f5ef-dd93-ab3f-4594-ecfaeb4375c3",
+              "endpoint": "lwsglahv627ubizk77bqp37sty-4jvcg7vd2y7elpgv7rkmj52tuu.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "SP_BuildScorecard",
+        "dependsOn": [
+          {
+            "activity": "NB_GoldBuild",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "LoadDate": {
+        "type": "string"
+      },
+      "Environment": {
+        "type": "string",
+        "defaultValue": "dev"
+      },
+      "IsFullReload": {
+        "type": "bool",
+        "defaultValue": false
+      },
+      "TableFilter": {
+        "type": "string",
+        "defaultValue": "*"
+      }
+    },
+    "variables": {
+      "v_load_date": {
+        "type": "String"
+      }
+    }
+  }
+}

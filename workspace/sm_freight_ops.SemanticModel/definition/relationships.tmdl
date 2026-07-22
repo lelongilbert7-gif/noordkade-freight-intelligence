@@ -1,0 +1,12 @@
+relationship e52d27f3-dcee-6bb3-03a0-1ac6040f95e0
+	fromColumn: gold_fact_shipments.date_key
+	toColumn: gold_dim_date.date_key
+
+relationship 6978eb98-7734-2d0d-6630-3e47a1ee340b
+	fromColumn: gold_fact_shipments.carrier_id
+	toColumn: gold_dim_carriers.carrier_id
+
+relationship 8dba5e8f-eee6-39bc-d433-3b8b5a4d33bb
+	fromColumn: gold_fact_shipments.lane_id
+	toColumn: gold_dim_lanes.lane_id
+

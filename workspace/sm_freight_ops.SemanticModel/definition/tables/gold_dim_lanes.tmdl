@@ -1,0 +1,58 @@
+table gold_dim_lanes
+	lineageTag: ddfdbf1d-a5ca-48de-a6e4-77b6b079f5ac
+	sourceLineageTag: [dbo].[gold_dim_lanes]
+
+	column lane_id
+		dataType: string
+		lineageTag: 6b24e85e-5d29-4188-bd17-296cdc785a39
+		sourceLineageTag: lane_id
+		summarizeBy: none
+		sourceColumn: lane_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_city
+		dataType: string
+		lineageTag: c6d835a7-8724-4008-9647-b2bf150957d6
+		sourceLineageTag: origin_city
+		summarizeBy: none
+		sourceColumn: origin_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column dest_city
+		dataType: string
+		lineageTag: b1bd042a-3978-4f11-b894-0efeeb739721
+		sourceLineageTag: dest_city
+		summarizeBy: none
+		sourceColumn: dest_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_km
+		dataType: int64
+		formatString: 0
+		lineageTag: 5515176c-d525-4481-9c3f-1f96c92ee5ae
+		sourceLineageTag: distance_km
+		summarizeBy: none
+		sourceColumn: distance_km
+
+		annotation SummarizationSetBy = Automatic
+
+	column std_transit_hours
+		dataType: double
+		lineageTag: ef436940-e31b-4789-a4e9-73d25d458d1e
+		sourceLineageTag: std_transit_hours
+		summarizeBy: none
+		sourceColumn: std_transit_hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_dim_lanes = entity
+		mode: directLake
+		source
+			entityName: gold_dim_lanes
+			expressionSource: 'DirectLake - lh_freight'
+

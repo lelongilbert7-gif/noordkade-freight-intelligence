@@ -1,0 +1,715 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1606,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "ingestion_control",
+        "sourceLineageTag": "[etl].[ingestion_control]",
+        "columns": [
+          {
+            "name": "table_name",
+            "dataType": "string",
+            "sourceColumn": "table_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "table_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "source_folder",
+            "dataType": "string",
+            "sourceColumn": "source_folder",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "source_folder",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "source_format",
+            "dataType": "string",
+            "sourceColumn": "source_format",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "source_format",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "load_type",
+            "dataType": "string",
+            "sourceColumn": "load_type",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "load_type",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "watermark_column",
+            "dataType": "string",
+            "sourceColumn": "watermark_column",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "watermark_column",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "watermark_value",
+            "dataType": "string",
+            "sourceColumn": "watermark_value",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "watermark_value",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "is_active",
+            "dataType": "boolean",
+            "sourceColumn": "is_active",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "is_active",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "priority",
+            "dataType": "int64",
+            "sourceColumn": "priority",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "priority",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "notebook_name",
+            "dataType": "string",
+            "sourceColumn": "notebook_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "notebook_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "ingestion_control",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "etl"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "pipeline_run_log",
+        "sourceLineageTag": "[etl].[pipeline_run_log]",
+        "columns": [
+          {
+            "name": "run_id",
+            "dataType": "string",
+            "sourceColumn": "run_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "run_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "pipeline_name",
+            "dataType": "string",
+            "sourceColumn": "pipeline_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "pipeline_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "table_name",
+            "dataType": "string",
+            "sourceColumn": "table_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "table_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "load_date",
+            "dataType": "dateTime",
+            "sourceColumn": "load_date",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "load_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "rows_loaded",
+            "dataType": "int64",
+            "sourceColumn": "rows_loaded",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "rows_loaded",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "dataType": "string",
+            "sourceColumn": "status",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "status",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "started_utc",
+            "dataType": "dateTime",
+            "sourceColumn": "started_utc",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "started_utc",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ended_utc",
+            "dataType": "dateTime",
+            "sourceColumn": "ended_utc",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "ended_utc",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "error_message",
+            "dataType": "string",
+            "sourceColumn": "error_message",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "error_message",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "pipeline_run_log",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "etl"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "carrier_scorecard_monthly",
+        "sourceLineageTag": "[mart].[carrier_scorecard_monthly]",
+        "columns": [
+          {
+            "name": "year_month",
+            "dataType": "string",
+            "sourceColumn": "year_month",
+            "sourceProviderType": "char",
+            "sourceLineageTag": "year_month",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "carrier_id",
+            "dataType": "string",
+            "sourceColumn": "carrier_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "carrier_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "carrier_name",
+            "dataType": "string",
+            "sourceColumn": "carrier_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "carrier_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "shipments",
+            "dataType": "int64",
+            "sourceColumn": "shipments",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "shipments",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "total_km",
+            "dataType": "int64",
+            "sourceColumn": "total_km",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "total_km",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "total_cost_eur",
+            "dataType": "decimal",
+            "sourceColumn": "total_cost_eur",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "total_cost_eur",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "total_revenue_eur",
+            "dataType": "decimal",
+            "sourceColumn": "total_revenue_eur",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "total_revenue_eur",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "margin_eur",
+            "dataType": "decimal",
+            "sourceColumn": "margin_eur",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "margin_eur",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "margin_pct",
+            "dataType": "decimal",
+            "sourceColumn": "margin_pct",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "margin_pct",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "cost_per_km_eur",
+            "dataType": "decimal",
+            "sourceColumn": "cost_per_km_eur",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "cost_per_km_eur",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "otd_pct",
+            "dataType": "decimal",
+            "sourceColumn": "otd_pct",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "otd_pct",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "snapshot_utc",
+            "dataType": "dateTime",
+            "sourceColumn": "snapshot_utc",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "snapshot_utc",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "carrier_scorecard_monthly",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "mart"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "v_lane_profitability",
+        "sourceLineageTag": "[mart].[v_lane_profitability]",
+        "columns": [
+          {
+            "name": "lane_id",
+            "dataType": "string",
+            "sourceColumn": "lane_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "lane_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "origin_city",
+            "dataType": "string",
+            "sourceColumn": "origin_city",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "origin_city",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "dest_city",
+            "dataType": "string",
+            "sourceColumn": "dest_city",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "dest_city",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "shipments",
+            "dataType": "int64",
+            "sourceColumn": "shipments",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "shipments",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "margin_eur",
+            "dataType": "double",
+            "sourceColumn": "margin_eur",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "margin_eur",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "margin_pct",
+            "dataType": "double",
+            "sourceColumn": "margin_pct",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "margin_pct",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "avg_cost_per_km",
+            "dataType": "double",
+            "sourceColumn": "avg_cost_per_km",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "avg_cost_per_km",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "margin_rank",
+            "dataType": "int64",
+            "sourceColumn": "margin_rank",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "margin_rank",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "margin_decile",
+            "dataType": "int64",
+            "sourceColumn": "margin_decile",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "margin_decile",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "reprice_flag",
+            "dataType": "int64",
+            "sourceColumn": "reprice_flag",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "reprice_flag",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "v_lane_profitability",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "mart"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}

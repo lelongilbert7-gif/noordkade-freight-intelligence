@@ -1,0 +1,80 @@
+table gold_dim_carriers
+	lineageTag: b961bb27-a5b8-4b6e-9933-304940adde58
+	sourceLineageTag: [dbo].[gold_dim_carriers]
+
+	measure 'Carriers below SLA' =
+			
+			COUNTROWS (
+			    FILTER ( VALUES ( gold_dim_carriers[carrier_id] ), [OTD %] < 0.85 )
+			)
+		lineageTag: 81998b7b-78dd-4a2f-9df7-02165954b92e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column carrier_id
+		dataType: string
+		lineageTag: b2271529-09dc-49e9-be87-54dfb559ede3
+		sourceLineageTag: carrier_id
+		summarizeBy: none
+		sourceColumn: carrier_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_name
+		dataType: string
+		lineageTag: 1622ba79-1f70-4aca-9540-5b27d56882a6
+		sourceLineageTag: carrier_name
+		summarizeBy: none
+		sourceColumn: carrier_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_country
+		dataType: string
+		lineageTag: 6038318e-55bf-43dc-88a1-36ae5937bfad
+		sourceLineageTag: home_country
+		summarizeBy: none
+		sourceColumn: home_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column fleet_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d94dbb1-b643-42a5-b1fe-8863dca32f28
+		sourceLineageTag: fleet_size
+		summarizeBy: none
+		sourceColumn: fleet_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column safety_rating
+		dataType: double
+		lineageTag: 777467ca-72ac-4b82-afb6-95c349802891
+		sourceLineageTag: safety_rating
+		summarizeBy: none
+		sourceColumn: safety_rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column contracted_rate_per_km_eur
+		dataType: double
+		lineageTag: c889948a-e914-4e54-85ee-57ba94f78aa1
+		sourceLineageTag: contracted_rate_per_km_eur
+		summarizeBy: none
+		sourceColumn: contracted_rate_per_km_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_dim_carriers = entity
+		mode: directLake
+		source
+			entityName: gold_dim_carriers
+			expressionSource: 'DirectLake - lh_freight'
+

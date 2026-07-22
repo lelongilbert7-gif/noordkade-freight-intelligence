@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "rpt_NKF"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8462fd8e-b547-8bdc-4dc4-274f2f7ad3d0"
+  }
+}

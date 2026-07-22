@@ -1,0 +1,7 @@
+role 'NL Regional Manager'
+	modelPermission: read
+
+	tablePermission gold_dim_lanes = [origin_city] IN {"Rotterdam", "Amsterdam", "Venlo", "Eindhoven", "Utrecht"}
+
+	annotation PBI_Id = ee60aa9ca69b4647924df49eae5e1d02
+

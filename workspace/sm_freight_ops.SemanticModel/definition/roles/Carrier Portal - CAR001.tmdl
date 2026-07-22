@@ -1,0 +1,7 @@
+role 'Carrier Portal - CAR001'
+	modelPermission: read
+
+	tablePermission gold_dim_carriers = [carrier_id] = "CAR001"
+
+	annotation PBI_Id = c513e4f82d114d018b6ec7ff1311b1fe
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "sm_freight_ops"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2a549d82-d141-bfd2-4442-f6b0e06a32fb"
+  }
+}

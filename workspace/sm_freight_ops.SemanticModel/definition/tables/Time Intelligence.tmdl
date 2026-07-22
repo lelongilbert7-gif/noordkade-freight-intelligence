@@ -1,0 +1,54 @@
+table 'Time Intelligence'
+	lineageTag: 18414c2b-86e4-4b9b-af34-5e275cadf29b
+
+	calculationGroup
+		precedence: 10
+
+		calculationItem Current = SELECTEDMEASURE()
+
+		calculationItem MTD = CALCULATE ( SELECTEDMEASURE (), DATESMTD ( gold_dim_date[date] ) )
+
+		calculationItem YTD = CALCULATE ( SELECTEDMEASURE (), DATESYTD ( gold_dim_date[date] ) )
+
+		calculationItem PY = CALCULATE ( SELECTEDMEASURE (), SAMEPERIODLASTYEAR ( gold_dim_date[date] ) )
+
+		calculationItem YOY =
+				VAR Cur = SELECTEDMEASURE ()
+				VAR Prev =
+				    CALCULATE ( SELECTEDMEASURE (), SAMEPERIODLASTYEAR ( gold_dim_date[date] ) )
+				RETURN DIVIDE ( Cur - Prev, Prev )
+
+			formatStringDefinition = "0.0%"
+
+	column 'Time Calc'
+		dataType: string
+		lineageTag: d3ddfe8a-2aec-4f6c-94d9-9a78f29f8be7
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c78849-07c1-47a3-8f21-0037fe45a480
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Ordinal Hierarchy'
+		lineageTag: d07964b4-a131-43fa-a324-9ac4854568d4
+
+		level Ordinal
+			lineageTag: 7b854959-40de-42d0-9d12-e8dc7e4284c9
+			column: Ordinal
+
+	hierarchy 'Ordinal Hierarchy 2'
+		lineageTag: 3b929574-164f-448b-aab8-c64905bd7d12
+
+		level Ordinal
+			lineageTag: d7587758-f978-4523-a38e-67b52526cea4
+			column: Ordinal
+

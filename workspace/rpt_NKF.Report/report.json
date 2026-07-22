@@ -1,0 +1,332 @@
+{
+  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"type\":2,\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}},\"customTheme\":{\"name\":\"Noordkade_Harbor4230108839606289.json\",\"type\":1,\"version\":{\"visual\":\"2.7.0\",\"report\":\"3.2.0\",\"page\":\"2.3.1\"}}},\"activeSectionIndex\":2,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"filterPaneHiddenInEditMode\":false},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY26SU02",
+            "path": "BaseThemes/CY26SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "Noordkade_Harbor4230108839606289.json",
+            "path": "Noordkade_Harbor4230108839606289.json",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Carrier Scorecard",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "5a6512b12269852dad62",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"2a30cc49313c08e53138\",\"layouts\":[{\"id\":0,\"position\":{\"x\":817.5740421125302,\"y\":95.4366586123576,\"z\":5000,\"width\":446.9616845012081,\"height\":139.97376596479114,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"gold_dim_carriers.Carriers below SLA\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_carriers\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Carriers below SLA\"},\"Name\":\"gold_dim_carriers.Carriers below SLA\",\"NativeReferenceName\":\"Carriers below 85% on-time\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Carriers below SLA\"}}}]},\"columnProperties\":{\"gold_dim_carriers.Carriers below SLA\":{\"displayName\":\"Carriers below 85% on-time\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"value\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#E8590C'\"}}}}}},\"selector\":{\"id\":\"default\"}}]}}}",
+          "filters": "[]",
+          "height": 139.97,
+          "queryBinary": "H4sIAAAAAAAEAI1SwUoDMRD9lRLwtspuQZG9aa0itlKt1IOUErNjG9kky2yiXcr+uzPparX04CUkM+/Ne4/JRgycMdIWtchfNmIKdPdaPQTA5kp6OV3JCjqIyDciNvgyA6y1syLvJ+IanYn0e2lA5GIpEjGkMb7hhyuLRaHNQklETSxqPjUV4dI22VGyg5xCeviFnyfksATlo9oYZB0Q2M1wXSHUW0OUwgVU8Ahvu0d01baJmKCrAKPKoDPUe4XSffamowtBgG9D+7ZPDsAZ7fUHSwGCVdCR96Dnp0c9Z4+9piZneF4B26YIA2cL7Tvbt/ZvlLqDlMHYf4fM9lM2IJFqJDuTZQAeSlNH2gPKMm6SywTsp/2zESPnLR005FKTObtkzAS1kdvF36ALFZW37kjonfbRuU3nkfjzNzJ6DNegAgPG4FGr+k7zT8pY4gvueT/QfQIAAA==",
+          "width": 446.96,
+          "x": 817.57,
+          "y": 95.44,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"46e45afab42774990569\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":38,\"width\":400,\"height\":72,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Carrier Scorecard· FY2026\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"11pt\",\"color\":\"#8da9c4\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 400.00,
+          "x": 24.00,
+          "y": 38.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"54d016bc65ec34a01078\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1001,\"y\":16,\"z\":1000,\"width\":176,\"height\":40,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"gold_dim_date.year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"year\"},\"Name\":\"gold_dim_date.year\",\"NativeReferenceName\":\"year\"}]},\"syncGroup\":{\"groupName\":\"year\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"year\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2026L\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 40.00,
+          "queryBinary": "H4sIAAAAAAAEAE2RTU/DMAyG/4vPFdrg1iOjIIRAY0PjgKopSswIaj7kJrCq6n/HToe2W/zxvo/tjLAKzilveqg/Rtgiv5PVrxlpuFNJbb9UxFML1COUgjx2SL0NHurrCu4puCJ/UQ6hhgNU0LBNGiQIndkb6/ZGJeTC2xC5ZzG1FdM61KkoV6HLzotxc4yE/ezNA4VMGjf4eQ4KYJoqWFOISAUyoCLg1P8Al8yrUpRasj9ihYRe46l1VrasvbXeWH8Q0JqsU/OeDxRy5PR8H0Z+88g8nMSLtgjlThs0ueRFI4mdLMSAm+rS7Z0Z4Zdfkyzw6HWXDTYupqFw2DRRxup83SW3NUfUWbyfMZHV/ZOVv1hODP8DnEnwDr8BAAA=",
+          "width": 176.00,
+          "x": 1001.00,
+          "y": 16.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"a30b8ff9c55000b08d13\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":14,\"width\":400,\"height\":38,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"NOORDKADE FREIGHT\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"16pt\",\"color\":\"#ffffff\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 38.00,
+          "width": 400.00,
+          "x": 24.00,
+          "y": 14.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"acca145d98ae53dc3045\",\"layouts\":[{\"id\":0,\"position\":{\"x\":815.9834311356575,\"y\":244.95409043838453,\"z\":6000,\"width\":448.55229547808074,\"height\":240.18225750776665,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"X\":[{\"queryRef\":\"gold_fact_shipments.Cost per KM\",\"active\":true}],\"Y\":[{\"queryRef\":\"gold_fact_shipments.OTD %\"}],\"Size\":[{\"queryRef\":\"gold_fact_shipments.Shipments\"}],\"Category\":[{\"queryRef\":\"gold_dim_carriers.carrier_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_dim_carriers\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Cost per KM\"},\"Name\":\"gold_fact_shipments.Cost per KM\",\"NativeReferenceName\":\"Cost per KM\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"OTD %\"},\"Name\":\"gold_fact_shipments.OTD %\",\"NativeReferenceName\":\"OTD %\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Shipments\"},\"Name\":\"gold_fact_shipments.Shipments\",\"NativeReferenceName\":\"Shipments\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"carrier_name\"},\"Name\":\"gold_dim_carriers.carrier_name\",\"NativeReferenceName\":\"carrier_name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#4A6FA5'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Cost against reliability'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 240.18,
+          "queryBinary": "H4sIAAAAAAAEAKVUwU7jMBD9lcoSNws1YbWHHoEuQtClS1BhharKcgbqVRxHYwe1qvrvzDgppKWwIC6RZ/zmzXvO2Ctx4qxVZe7F4H4lMqB1MPpPDbg8VUFlc1VBCxGDlYgbvJgAeuNKMUil+IXOxvLfyoIYiEchxZBowpIDV+SzB6XDzM9NZaEMnrZvlhUh+2v5WpS8qcqNnWmFaKjX/pp0b02uAnTwU0m+CtAhahyB8jUCexguKgTf2CDvrkYN1/DwGkQv67UUY3QVYOxy4nzoUdC7GAna2Sh56/Kwi2RgME9MDwilhrZum+376q5uTnsH/9HVYN5TtGH4vpbs5X9/rCfrzMV+TV2mFZ1ZUdvy07KSXV3tSM1KJt+R1h25wy3ge9q22WjWbufAh3bPQsvchFbd+Y5i30K+5CXd9bIEhZSjthNV1MCkxHppAqAq4j3lNAHTfvrzkpHTNX2I5NiQuPKRMWM0VjXX+gxdXVG6UUeN/tG9adX2ZSJTeTSN5fw4XENe640/TkzYDXX7IbucV0+AhaqYduwM/cVM2aqIc3XXnEwOi3ixxd9OnJBQSr08NAkFwwXomjuOIKDR/sLws5Swo2cEAx/vygQAAA==",
+          "width": 448.55,
+          "x": 815.98,
+          "y": 244.95,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"ddc5dcb9903801edbbe8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":1280,\"height\":72,\"z\":0,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"dff5ae41d72d9d3c020a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":96,\"z\":4000,\"width\":760,\"height\":540,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"gold_dim_carriers.carrier_name\",\"active\":true}],\"Values\":[{\"queryRef\":\"gold_fact_shipments.Shipments\"},{\"queryRef\":\"gold_fact_shipments.OTD %\"},{\"queryRef\":\"gold_fact_shipments.Cost per KM\"},{\"queryRef\":\"gold_fact_shipments.Total KM\"},{\"queryRef\":\"gold_fact_shipments.Total Revenue\"},{\"queryRef\":\"gold_fact_shipments.Margin\"},{\"queryRef\":\"gold_fact_shipments.Margin %\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_carriers\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"carrier_name\"},\"Name\":\"gold_dim_carriers.carrier_name\",\"NativeReferenceName\":\"carrier_name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Shipments\"},\"Name\":\"gold_fact_shipments.Shipments\",\"NativeReferenceName\":\"Shipments\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Total KM\"},\"Name\":\"gold_fact_shipments.Total KM\",\"NativeReferenceName\":\"Total KM\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Total Revenue\"},\"Name\":\"gold_fact_shipments.Total Revenue\",\"NativeReferenceName\":\"Total Revenue\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Margin\"},\"Name\":\"gold_fact_shipments.Margin\",\"NativeReferenceName\":\"Margin\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Margin %\"},\"Name\":\"gold_fact_shipments.Margin %\",\"NativeReferenceName\":\"Margin %\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Cost per KM\"},\"Name\":\"gold_fact_shipments.Cost per KM\",\"NativeReferenceName\":\"Cost per KM\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"OTD %\"},\"Name\":\"gold_fact_shipments.OTD %\",\"NativeReferenceName\":\"OTD %\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnFormatting\":[{\"properties\":{\"dataBars\":{\"positiveColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#8DA9C4'\"}}}}},\"negativeColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'minColor'\"}}}}},\"axisColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'foreground'\"}}}}},\"reverseDirection\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"hideText\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"totalMatchingOption\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}}}},\"selector\":{\"metadata\":\"gold_fact_shipments.Margin\"}}],\"values\":[{\"properties\":{\"backColor\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Right\":{\"RangePercent\":{\"Min\":{\"ScopedEval\":{\"Expression\":{\"Aggregation\":{\"Expression\":{\"ScopedEval\":{\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Scope\":[{\"AllRolesRef\":{}}]}},\"Function\":3}},\"Scope\":[]}},\"Max\":{\"ScopedEval\":{\"Expression\":{\"Aggregation\":{\"Expression\":{\"ScopedEval\":{\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Scope\":[{\"AllRolesRef\":{}}]}},\"Function\":4}},\"Scope\":[]}},\"Percent\":0.006}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Right\":{\"Literal\":{\"Value\":\"1.01D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#EAF4EF'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Right\":{\"RangePercent\":{\"Min\":{\"ScopedEval\":{\"Expression\":{\"Aggregation\":{\"Expression\":{\"ScopedEval\":{\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Scope\":[{\"AllRolesRef\":{}}]}},\"Function\":3}},\"Scope\":[]}},\"Max\":{\"ScopedEval\":{\"Expression\":{\"Aggregation\":{\"Expression\":{\"ScopedEval\":{\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Scope\":[{\"AllRolesRef\":{}}]}},\"Function\":4}},\"Scope\":[]}},\"Percent\":0.004}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Right\":{\"Literal\":{\"Value\":\"0.6D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#FEF6E7'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"OTD %\"}},\"Right\":{\"Literal\":{\"Value\":\"0.4D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#FBE9E7'\"}}}]}}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"gold_fact_shipments.OTD %\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Carrier scorecard'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 540.00,
+          "queryBinary": "H4sIAAAAAAAEAK2V227aQBCGXwWt1LtVhJ2TxF1DSFUltCkgclEhtLUnZit711rvpiDkd++MscE4EFDkG7SHf/75ZoGZNevrJBEqzFjv95qNAddWBr8cmNW9sGK8ECmUEtZbs+KCFlMwmdSK9XzOHoxOivAfIgHWYxHjbIA2dkUbHYfzUCbzQBgjMQovJ6sUdd2c70K8dzGvIrDzbCHTBJQ9EuUfzBQKCzX9jGNdMQS2YOzr2CWKShgsUwPZpgosXTsTwAhed5uilDzn7NnoFEyRpKxirogAryqSZpUXe0LSWflG9mBABVCGNdzWbAgicwbOxvOafOPtgzXg9p/zYlx72MNsdacWwCbairjzODzBtZUdw6r5tEY1gjdQ7t33eRCt0n7Mt3NsAXIoTCTVCbpSdAxr69EaT+fLWUQo+5ip8GmBqq8z28HN6d9YXXmMbd+tBbyfk/uTL7bRHEMqHbCdvSyAUIpupkJpS5TvjbaWfabh+U3wFQiDZ5h2KmIHZIquT9KCEXExCugYhX7Xv3ki5SzHDzS5kwinItI8G5mIzeT4ZrRL8XhDh4n+Ymsuabvc4z6/5Ff8mt/wW+rc7o+lfxTreYUnDaURhC6oiqaDKZWICJe8nugF0+t/tOprp7D7X3e7ORX3NYoMRDgkqqG3GQ5Xu5vt4w0lJcmLX4BYFssZbaqY23Nj6Pmqkekhw2AJgaOYIVgjg+xR0oD1SPof/mOQyZQHAAA=",
+          "width": 760.00,
+          "x": 24.00,
+          "y": 96.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"eb9c5db72852818a951e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":817.5740421125302,\"y\":516.9485674836037,\"z\":7000,\"width\":448.55229547808074,\"height\":151.10804280289955,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_dim_carriers.carrier_name\",\"active\":true}],\"Y\":[{\"queryRef\":\"gold_fact_shipments.Margin\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_carriers\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"carrier_name\"},\"Name\":\"gold_dim_carriers.carrier_name\",\"NativeReferenceName\":\"carrier_name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Margin\"},\"Name\":\"gold_fact_shipments.Margin\",\"NativeReferenceName\":\"Margin\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Margin\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Largest margin contributors'\"}}}}}]}}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_dim_carriers\"}},\"Property\":\"carrier_name\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"subquery\",\"Expression\":{\"Subquery\":{\"Query\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_carriers\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"carrier_name\"},\"Name\":\"field\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Margin %\"}}}],\"Top\":10}}},\"Type\":2},{\"Name\":\"g\",\"Entity\":\"gold_dim_carriers\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"carrier_name\"}}],\"Table\":{\"SourceRef\":{\"Source\":\"subquery\"}}}}}]},\"type\":\"TopN\",\"howCreated\":0,\"isHiddenInViewMode\":false}]",
+          "height": 151.11,
+          "queryBinary": "H4sIAAAAAAAEANVVTW/bMAz9K4OA3YzCNoYdfOvHNgxL1i4t0kMRBKrNJBpsy6Okbkbg/z5SctrGabAgaA/zyRL5Hh8pUlqLc11Vsi6MyO7W4hro36r8hwNsL6SV1yvZQO8isrXwBv6ZAhqla5GlkfiMuvLw77ICkYmliMQnorEtL3RZzAtVzXOJqAhFxpu2Ib+4i54gyQ5mIXM7NyvVVFDbl1HG3f/yggj7p0EwQRLlsTEcLDk9RvMu6ADRy3Q3V45VSAvPALOITqOE3HqZ57p0lU9tkKh2mMMEFk+LkE3XReIKdQPoo/SJzGvWQKZey0JBWQiOdbsChD5UXSjb89PRNxKVGa6+Ke6HOBIjWNhgek2BZJuo5cozn9btVJYO+P8CFtKV1q8vH4AgBZjTOgdjNZ1SZtFBx180yOPrQJo5qqrJUHULEmmP6uclMSvRjpQFlKXvuaBcpHH6ccSes867X2IBeNZ6FRcK6Zg3nbmtZAzSOISDJSY7hR1LXKr63XsRAt/oRmRJzCXqWy3daum3780DW3NnBk+2HNnPqgemp8alDuhhA7YjKvhyAYfKtgf9pHfap2rDsX/QXqVB/zFUfPzyvoT9DI8X6tsNUfIfDNG+FqCoZDiju0/VS8ZcoapkeF2+oHYNbYeiEPhn0MPrOEpmHspP6gQKl29KyhtTLiAF/hA957ulKPp3uFpdbXlo4zC2j+9Y0nGmkDtmG4NFlZtwMSes9C+0/LfO3AcAAA==",
+          "width": 448.55,
+          "x": 817.57,
+          "y": 516.95,
+          "z": 7000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Network overview",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "5d86de20623e6b6ea583",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1750cb132723c49518c3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":554,\"width\":1232,\"height\":140,\"z\":10000,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_dim_date.month\",\"active\":true}],\"Y\":[{\"queryRef\":\"gold_fact_shipments.Shipments\"}],\"Series\":[{\"queryRef\":\"gold_fact_shipments.service_type\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"month\"},\"Name\":\"gold_dim_date.month\",\"NativeReferenceName\":\"month\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Shipments\"},\"Name\":\"gold_fact_shipments.Shipments\",\"NativeReferenceName\":\"Shipments\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"service_type\"},\"Name\":\"gold_fact_shipments.service_type\",\"NativeReferenceName\":\"service_type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"legend\":[{\"properties\":{\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Service mix through the year'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 140.00,
+          "queryBinary": "H4sIAAAAAAAEAK2UTU/jMBCG/4vPEUoixKFHPoUWdlmCygFVleUM1Ci2o7HNElX578w4LU3D7gokbvH4nZlnXttZixNnjLS1F7OHtaiAvoNWvyNgdyqDrFayhY1EzNYibfDHHNBrZ8WszMQ5OpPSf0oDYiaeRCbOqEzoeOGaellrs6xlANq461rS5H22kxcf9I9ShaVf6daADX6UtciIsQEVUr8T10RjGefstUXwAxGN4SIquIXH3SJh9X0mbtC1gKmVcTasBMW2IGPUg2GXN4N+4WKAYBVstNvctbgG6SPCpymKKUb1PucEZd+Fg2rkx9+hxpW+7M4HLg/4ohUsA3v/f7Q96b/o9uvRSd6vgH1LB2lrHTZ8lxNm/x1n3YFEilHXuWwicE0qeqUDoGzSheYwCcu8PLpi5aJP8l9YAx53ieFUI1291LjIJhzfcxepJcWPNdlhnzjjBrWRw5O7QBdbCg9+UO7zAMPrPCsWKbUCRV5+IqMc9PzIb6GOaus+B+Y8C2EeZuP+90Tl/gyzRksvsMzzftryzrUjxREJSPH+syh6tg1U5G7XEFAr/0Pzr6Xgyd8AxqlWNo4EAAA=",
+          "width": 1232.00,
+          "x": 24.00,
+          "y": 554.00,
+          "z": 10000.00
+        },
+        {
+          "config": "{\"name\":\"3898181bcd4a4d57842b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":284,\"width\":736,\"height\":260,\"z\":8000,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_dim_date.month\",\"active\":true}],\"Y\":[{\"queryRef\":\"gold_fact_shipments.Total Revenue\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"month\"},\"Name\":\"gold_dim_date.month\",\"NativeReferenceName\":\"month\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Total Revenue\"},\"Name\":\"gold_fact_shipments.Total Revenue\",\"NativeReferenceName\":\"Total Revenue\"}]},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Revenue by month'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 260.00,
+          "queryBinary": "H4sIAAAAAAAEAK2TwU7DMAyGXwXlXE3thDj0OAYIscHY0DigaYpaswY1SeUmQFX13bHTDUYREgduif3b/vInacW51VqavBbpUytWQGunsnsP2Eylk6tCVrCXiLQVIcGLNWCtrBHpOBKXaHUov5UaRCp2IhIX1MY1vLFlvs2V3ubSASUemoo0cRd9yZMf+meZuW1dqEqDcfVR1SYixhIyF+ad29JrwzgX7xVC3RPRMazHDJbw/LUJWF0XiQXaCjCM0ta4QlDsAHKMOuqznHTqlZsBgslgrz3UtmIOsvYIf6ZIhhgP1snyZAmvYDwMcb47Mfqu/Q1u0JFMeyyAEYNnJlduj3g9MK/+D1sbkEgxmrqWpQfuSU1nygHKMrwdDpNwHI/PZqzcdEF+hzngpAkMU4V0y2FwEg04/ufaaSTFJ4rsMDuuWKDSsn/dV2h9ReHeD6p96WF4H0fJJpTy/1hC7rODmxxYMxuNPY2O+z3SFPvWs3tDjzeJ47hjrs9/lHR8TMg8d5uDQ5XVN4p/XcKkHyMaWhCpAwAA",
+          "width": 736.00,
+          "x": 24.00,
+          "y": 284.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"56ac187029d9e578ab59\",\"layouts\":[{\"id\":0,\"position\":{\"x\":648,\"y\":96,\"width\":296,\"height\":120,\"z\":5000,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"gold_fact_shipments.OTD %\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"OTD %\"},\"Name\":\"gold_fact_shipments.OTD %\",\"NativeReferenceName\":\"On-time\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"OTD %\"}}}]},\"columnProperties\":{\"gold_fact_shipments.Total Revenue\":{\"formatString\":null},\"gold_fact_shipments.OTD %\":{\"displayName\":\"On-time\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 120.00,
+          "queryBinary": "H4sIAAAAAAAEAI2SwU7DMAyGXwVF4lbQugOHHtkKQmxssGkc0DRFqbcFNUnlJGjV1HfHbgsDduFS2c7v31/iHsXIGSNt4UX2dhQLoDho9RwB67EMcrGXFfQSkR1Fe8DBCtBrZ0U2TMQdOtO2P0kDIhM7kYicbELNiSuLzVaqsPF7XRmwwdPxsq5IOWiSU1N61lVosylkgB/6dUKMJajQzpuC9BGBefJDheA7JLqHi6jgBbanpOVqmkTM0VWA7ZTZcnxxKaj2xXDOet1pWBL0B1sCglXQd8zsVdAUMdjrHpiFuEbOFjr0LA/2N5/vJWU09t/k6V/0GiRSjcauZBmBTcl1ogOgLNsFcZmEw8HwZsLKdUMfMrnVBGd3rJmjNrLb5z26WFG5o6NB7/TIPe1g3TZ+rzylJD+AiiyYQkCt/KPmHyTlEZ/gd8QyVAIAAA==",
+          "width": 296.00,
+          "x": 648.00,
+          "y": 96.00,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"5cfc7f6a3a6bca2ee507\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":1280,\"height\":72,\"z\":0,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6945ef8f2a7ee34ec894\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":38,\"width\":400,\"height\":72,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Network overview · FY2026\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"11pt\",\"color\":\"#8da9c4\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 400.00,
+          "x": 24.00,
+          "y": 38.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"83b1813dc650c020ac6c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":336,\"y\":96,\"width\":296,\"height\":120,\"z\":7000,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"gold_fact_shipments.Margin %\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin %\"},\"Name\":\"gold_fact_shipments.Margin %\",\"NativeReferenceName\":\"Margin\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin %\"}}}]},\"columnProperties\":{\"gold_fact_shipments.Total Revenue\":{\"formatString\":null},\"gold_fact_shipments.Margin %\":{\"displayName\":\"Margin\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 120.00,
+          "queryBinary": "H4sIAAAAAAAEAI2SwU7DMAxAfwVZ4lahtQcOPTIGQmxoMDQOaJqi1NuCmqRyErRq6r/jpGUDduFSxc6z/Vr3AGOrtTCVg/L9AAvks1fyOSC1t8KLxU40OCBQHiBdxMMSySlroCwyuCOrU/mT0AglbCGDCbfxbQxsXa03Qvq126lGo/GOr1/bhslRl52K8rOqSul1JTz+4FcZO9YofZo3Q+ECYfSZ7BtC1yvxe9hAEl9wcwqSV9dlMCfbIKUpM0FbZS4ugdPfGue6V0csUl59xsZIaCQORT0A0e5th1GI5cbWVMoPQg/mt6QbkDpo82/9/K9/i4I4x2OXog4Ym3LXqfJIok5bimkGi1FxPY3kquMHN7lRLGe2kZmT0qJf6j3Z0HC6t+NBH/ylB9vRKhUe955zMNmjDBGYoScl3aOKf0keR3wBAoVt4FkCAAA=",
+          "width": 296.00,
+          "x": 336.00,
+          "y": 96.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"a33cf752e92a714440b2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":795.3054884363133,\"y\":284.7193648602002,\"z\":9000,\"width\":480.3645150155333,\"height\":259.2695892302382,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"azureMap\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_dim_lanes.origin_city\",\"active\":true}],\"Size\":[{\"queryRef\":\"gold_fact_shipments.Shipments\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_lanes\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"origin_city\"},\"Name\":\"gold_dim_lanes.origin_city\",\"NativeReferenceName\":\"origin_city\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"Shipments\"},\"Name\":\"gold_fact_shipments.Shipments\",\"NativeReferenceName\":\"Shipments\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"mapControls\":[{\"properties\":{\"defaultStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'road'\"}}},\"showStylePicker\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showNavigationControls\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showSelectionControl\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"zoom\":{\"expr\":{\"Literal\":{\"Value\":\"3.17D\"}}},\"centerLatitude\":{\"expr\":{\"Literal\":{\"Value\":\"49.67846698205403D\"}}},\"centerLongitude\":{\"expr\":{\"Literal\":{\"Value\":\"6.965533971786499D\"}}}}}],\"bubbleLayer\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"bubbleRadius\":{\"expr\":{\"Literal\":{\"Value\":\"6L\"}}},\"minBubbleRadius\":{\"expr\":{\"Literal\":{\"Value\":\"6L\"}}},\"maxRadius\":{\"expr\":{\"Literal\":{\"Value\":\"21L\"}}},\"bubbleStrokeWidth\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}},\"autoStrokeColor\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"layerPosition\":{\"expr\":{\"Literal\":{\"Value\":\"''\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Where freight originates.'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 259.27,
+          "queryBinary": "H4sIAAAAAAAEAK1TwU7DMAz9l5wrtPbAYcdtgIANxorGAU1TlJgtqE0qN0FUU/8dO9ugG0NCiFMT+/n5+TXeiKErS2l1LfrPG5EDnb1RDwGwGUkv87WsYAcR/Y2ICT7MAWvjrOhnibhEV8byO1mC6IuVSMQF0fiGL67QS23KZSEt1JR5bCoC9drkC59+K3iRyi/rtalKsP6HquxkGy09dPCLhIYqQPkocOiKUFrWf/FeIdTbEWhuF1DBDF6+LnGOtk3EFF0FGJs4NCtjl4pbUmYv5GDCsy6IMd68MTMgWAW7kkOijZiArAPCr4Wlx8ryT6uOdB0aeZZ3LD0trcNE3j2tgWVF66w2fifr+sjD+i/uZsdDNCCRYtR2LosATEqsY+MBZREfHYcJmPWy8zEjF22E36MGHDRRxMgg/e390zwU8p82U2PKDQy5YldcNkVTyu1yXKELFYW3tlD961YS33tJuoilvF4z0EHtTeXAnC2k3udJl+/RVfRpWUweqigc9I0zdoqgjaIXz8wpG7dfy7Tl4UEFZp+AR6PqW8NLnLLyD6CGO9z4AwAA",
+          "width": 480.36,
+          "x": 795.31,
+          "y": 284.72,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"acd98e3c91a0a5c55aac\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":14,\"width\":400,\"height\":38,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"NOORDKADE FREIGHT\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"16pt\",\"color\":\"#ffffff\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 38.00,
+          "width": 400.00,
+          "x": 24.00,
+          "y": 14.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"d3f368d160aa3ab0c55b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1001,\"y\":16,\"z\":1000,\"width\":176,\"height\":40,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"gold_dim_date.year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"year\"},\"Name\":\"gold_dim_date.year\",\"NativeReferenceName\":\"year\"}]},\"syncGroup\":{\"groupName\":\"year\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"year\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2026L\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 40.00,
+          "queryBinary": "H4sIAAAAAAAEAE2RTU/DMAyG/4vPFdrg1iOjIIRAY0PjgKopSswIaj7kJrCq6n/HToe2W/zxvo/tjLAKzilveqg/Rtgiv5PVrxlpuFNJbb9UxFML1COUgjx2SL0NHurrCu4puCJ/UQ6hhgNU0LBNGiQIndkb6/ZGJeTC2xC5ZzG1FdM61KkoV6HLzotxc4yE/ezNA4VMGjf4eQ4KYJoqWFOISAUyoCLg1P8Al8yrUpRasj9ihYRe46l1VrasvbXeWH8Q0JqsU/OeDxRy5PR8H0Z+88g8nMSLtgjlThs0ueRFI4mdLMSAm+rS7Z0Z4Zdfkyzw6HWXDTYupqFw2DRRxup83SW3NUfUWbyfMZHV/ZOVv1hODP8DnEnwDr8BAAA=",
+          "width": 176.00,
+          "x": 1001.00,
+          "y": 16.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"e8d946794bc285652174\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":96,\"width\":296,\"height\":120,\"z\":4000,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"gold_fact_shipments.Total Revenue\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Total Revenue\"},\"Name\":\"gold_fact_shipments.Total Revenue\",\"NativeReferenceName\":\"Revenue\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Total Revenue\"}}}]},\"columnProperties\":{\"gold_fact_shipments.Total Revenue\":{\"formatString\":\"0.0\",\"displayName\":\"Revenue\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"shapeCustomRectangle\":[{\"properties\":{\"rectangleRoundedCurveCustomStyle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"id\":\"default\"}}],\"value\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#E8590C'\"}}}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#E3E8EE'\"}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 120.00,
+          "queryBinary": "H4sIAAAAAAAEAI2SwW7CMAyGX2XKuZoohx16HGPTNJgYIHaYELJSA5mapHISRIX67nNCBwMuu1Sx/dv/5yYHMbBagymdKL4OYoZ89kp+BKTmCTzMtlBjJxHFQaRCPCyQnLJGFP1MPJPVqf0dNIpCbEQmhjzGNzGwVblag/Qrt1W1RuMdl+dNzcpem52b8puuUulVCR7/6JcZM1YoffIbI7hAGHmG+5rQHZF4DxtI4hTX5yBxtW0mJmRrpOQytx6quynu0AQUXPtluWW+v9RGqVe7aIGERmLXeZrFoJ9bjGzMObCmVL5jezWXvK6TVEGbf2+SX6/SIBDn2HYBVcA4lKeOlEeCKl1YTLOw3+s/jKJy2fKHhzwqhjObqJmQ0nC83xeyoeb0kY6Nvvmnd7S9ZWo8PYGcg+EeZYiCMXpS0r2p+GDyaPEDIJENfmQCAAA=",
+          "width": 296.00,
+          "x": 24.00,
+          "y": 96.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"fd1d4fc103a87e30c9be\",\"layouts\":[{\"id\":0,\"position\":{\"x\":960,\"y\":96,\"width\":296,\"height\":120,\"z\":6000,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"gold_fact_shipments.Cost per KM\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Cost per KM\"},\"Name\":\"gold_fact_shipments.Cost per KM\",\"NativeReferenceName\":\"€ / km\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Cost per KM\"}}}]},\"columnProperties\":{\"gold_fact_shipments.Total Revenue\":{\"formatString\":null},\"gold_fact_shipments.Cost per KM\":{\"displayName\":\"€ / km\",\"formatString\":\"0.00\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 120.00,
+          "queryBinary": "H4sIAAAAAAAEAI2SzU7DMAzHX6XyuYJ1Bw49MgZC29BgaBzQNEWttwWapMoHWjX1wvPwVDwJdlbYYBcuUWz/bf8cZwcDo5TQpYP8eQczpLuXxX1A21wJL2YbUWMngXwHMcCXOVonjYa8n8K1NSqm3wmFkMMaUhhSGd+wYapyuRKFX7qNrBVq7yj82NSk7LXpISk7ySqlWpbC45F+kRJjhYWP/SYoXLDIPMNtbdHtkWgOE2yBD7g6GJGrbVOYWlOjjV0GxvmEjGQ0AYp8k5wSnx0rWejlG5dHi7rALu/z/SM5T14VMOXTBhmMIAdGl9J3YLf6N6zrJFVQ+t9jZH/naFBY8lHbuagCclGqOpYerajitthNwn6vfzFm5aKlg4pcSoLTa9ZMrVRiv9wba0JN7j0dNXqhF+9oe4uY+LP/jIzhFovAggl6Kws3kvxbMm7xBYDG/6hhAgAA",
+          "width": 296.00,
+          "x": 960.00,
+          "y": 96.00,
+          "z": 6000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Lane Performance",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "a13a09aaa173a033e172",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"02c3cb475027868cea80\",\"layouts\":[{\"id\":0,\"position\":{\"x\":803.2585433206765,\"y\":95.4366586123576,\"z\":6000,\"width\":477.183293061788,\"height\":300.62547462892644,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"gold_dim_lanes.origin_city\"},{\"queryRef\":\"gold_dim_lanes.dest_city\"},{\"queryRef\":\"gold_fact_shipments.Shipments\"},{\"queryRef\":\"gold_fact_shipments.Margin\"},{\"queryRef\":\"gold_fact_shipments.Avg Transit Hours\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_dim_lanes\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Shipments\"},\"Name\":\"gold_fact_shipments.Shipments\",\"NativeReferenceName\":\"Shipments\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin\"},\"Name\":\"gold_fact_shipments.Margin\",\"NativeReferenceName\":\"Margin\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Avg Transit Hours\"},\"Name\":\"gold_fact_shipments.Avg Transit Hours\",\"NativeReferenceName\":\"Avg Transit Hours\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"origin_city\"},\"Name\":\"gold_dim_lanes.origin_city\",\"NativeReferenceName\":\"origin_city\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"dest_city\"},\"Name\":\"gold_dim_lanes.dest_city\",\"NativeReferenceName\":\"dest_city\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Shipments\"}}}]},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Lowest-contributing lanes'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"6f25aa2d6926e29e7e32\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_fact_shipments\"}},\"Property\":\"lane_id\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"subquery\",\"Expression\":{\"Subquery\":{\"Query\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"lane_id\"},\"Name\":\"field\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin\"}}}],\"Top\":10}}},\"Type\":2},{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"lane_id\"}}],\"Table\":{\"SourceRef\":{\"Source\":\"subquery\"}}}}}]},\"type\":\"TopN\",\"howCreated\":1}]",
+          "height": 300.63,
+          "queryBinary": "H4sIAAAAAAAEAMWWS4/aMBCA/8rK52iVZNseuLFLXyrsbgGxh2qFTDKAqyROxzYtQvz3jp0A4RFaoKg5xfY8vpnMjLNgDzJNeRYr1vi2YD2gdy2irwZw3uKa96Y8h1KENRbMHdiXAaASMmON0GMfUKZO/ZGnwBpswjz2nszouV3IJB6OeaSHairyFDKt6Lg/z0nSX3obpWBPKxbpMOEZHFZQZvTD0ZDarxxBFTwUxOrgr3nD84D31Y4TT8LDMcZcQ0Xh1aPvkECkHeODTEzq4tqJUhqMoAvjzaIIZbn02DPKHNB5sThDETPaLTHGAhJak5uXKSCUXrJY6NI0fe+co1C7qy/CFoHvsTaMdXF0EluwBydRTEQ2jGxC7FFXTKbOcjObD3hiwL63YMxNot36aQaIIgbVzCJQWiLVrUYDS/t4/y0OAtLXiuLzDpg6qyyCXeQ5cKQ9qgKHZK2S2bbQgDxxHVOQs9AP37Wt5OvSiT9hDHg/dxQtgVSnznWw24Yd4MognF+5HY5UHKzw2pc5+fBtfspGCbd68YzOOhVwl6+3Hg+b3jowPG57lTHyyLWYWdPUePTtS62qpcu5Vnk7ClUK1RGtbVyO05xNbvrIMyX0zSeS+lO69uXrIA9ZPr2Zj86kbdL1eL+tCtXhbRu6HKwyZOqwNiJ1UBUj9RfAPxk5tReRa2c+SqBeeX23X28iBlefiOGlE/HIwCG/dHZPF5nIJlbrGUXKi1+djyhNTttFWkj/e0Fk174XeKF3572xo9CMtNQ2tMBZs/97XYhNtMqz3RjYrBLNnVd18UKO5c/i6jQZjdO3fjGa179ZwdJGD5GxxjqgUUSquHcDy/4bqtJdpXgKAAA=",
+          "width": 477.18,
+          "x": 803.26,
+          "y": 95.44,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"24519a6b3ee1564ce07c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":1280,\"height\":72,\"z\":0,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"8187dd639c34540c7550\",\"layouts\":[{\"id\":0,\"position\":{\"x\":23.8591646530894,\"y\":405.6057991025198,\"z\":5000,\"width\":316.5315843976527,\"height\":289.4911977908181,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"gold_fact_shipments.Lanes below half average margin\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Lanes below half average margin\"},\"Name\":\"gold_fact_shipments.Lanes below half average margin\",\"NativeReferenceName\":\"Lanes with weakest margin per km\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Lanes below half average margin\"}}}]},\"columnProperties\":{\"gold_fact_shipments.Lanes below €1M margin\":{\"displayName\":\"Lanes contributing under €1M\"},\"gold_fact_shipments.Lanes below half average margin\":{\"displayName\":\"Lanes with weakest margin per km\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"value\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#E8590C'\"}}}}}},\"selector\":{\"id\":\"default\"}}]}}}",
+          "filters": "[]",
+          "height": 289.49,
+          "queryBinary": "H4sIAAAAAAAEAI1SwU7DMAz9lSrnCq07cOiRMRBiQ4OhcUDTZFqvDWuSykm3VVP/HScrDNgBLlFsv2e/l/ggRkYp0LkV6etBzJHvTmaPDVJ7DQ7mJdTYQ0R6EKHgLwskK40W6TAWN2RUoD+AQpGKQsRizG1c6wNT5as1ZG5lS1kr1M5y+bmtGTno4hMpOWPlUq1ycPgNv4xZY4WZC/OmCLYh9HrG+5rQHiWxD9NQhk+4PgVBV9fFYkamRgpTJqDRRm9YmV1UQrWOYIsEBUYKqJBaMPpT3bmLi7/Ynuzk1stAQp1h3+vI20lXRjuEDVrXMyLWFW2U8C5fSvTG2OTI6Fy63tid/mnW9pCqUfrfz5D8focWgTjHYxdQNeibcteJdOynCr/t0wwcDoaXE49cdnxwkyvJ4nThMTOSbCMsxy2Zpub0UR0Peucf69UOloH4tT8JB+M9Zo0HTNGRzOy99NuW+BEfoDpZz6ECAAA=",
+          "width": 316.53,
+          "x": 23.86,
+          "y": 405.61,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"a5b5bbeb80b5059a1490\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":38,\"width\":400,\"height\":72,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Lane Performance· FY2026\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"11pt\",\"color\":\"#8da9c4\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 400.00,
+          "x": 24.00,
+          "y": 38.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"bfb0dd8d69c52a890d90\",\"layouts\":[{\"id\":0,\"position\":{\"x\":356.2968588194684,\"y\":405.6057991025198,\"z\":7000,\"width\":924.1449775629961,\"height\":314.9409734207801,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"decompositionTreeVisual\",\"projections\":{\"Analyze\":[{\"queryRef\":\"gold_fact_shipments.Margin\"}],\"ExplainBy\":[{\"queryRef\":\"gold_dim_lanes.origin_city\",\"active\":true},{\"queryRef\":\"gold_dim_lanes.dest_city\",\"active\":true},{\"queryRef\":\"gold_dim_carriers.carrier_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_dim_lanes\",\"Type\":0},{\"Name\":\"g2\",\"Entity\":\"gold_dim_carriers\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin\"},\"Name\":\"gold_fact_shipments.Margin\",\"NativeReferenceName\":\"Margin\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"origin_city\"},\"Name\":\"gold_dim_lanes.origin_city\",\"NativeReferenceName\":\"origin_city\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"dest_city\"},\"Name\":\"gold_dim_lanes.dest_city\",\"NativeReferenceName\":\"dest_city\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g2\"}},\"Property\":\"carrier_name\"},\"Name\":\"gold_dim_carriers.carrier_name\",\"NativeReferenceName\":\"carrier_name\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin\"}}}]},\"expansionStates\":[{\"roles\":[\"ExplainBy\"],\"levels\":[{\"queryRefs\":[\"gold_dim_lanes.origin_city\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_dim_lanes\"}},\"Property\":\"origin_city\"}}],\"isPinned\":true},{\"queryRefs\":[\"gold_dim_lanes.dest_city\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"gold_dim_lanes\"}},\"Property\":\"dest_city\"}}],\"isPinned\":true},{\"queryRefs\":[\"gold_dim_carriers.carrier_name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'Hamburg'\"}}],\"isToggled\":true,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'Lyon'\"}}],\"isToggled\":true}]}]}}],\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"tree\":[{\"properties\":{\"effectiveBarsPerLevel\":{\"expr\":{\"Literal\":{\"Value\":\"3L\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Where margin concentrates'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 314.94,
+          "queryBinary": "H4sIAAAAAAAEAO1WTW/aQBD9L3vJxUJ8SD1wa0LSRoU0TaLkECG0sQezlb1rjXfTIMR/78zaBuxAAgm9VVzw7syb9+bLXogzk6ZSR7noPy7ELdB/q8JfDnA+kFbezmQGpYnoL4S/4D/3gLkyWvS7gbhAk3r3K5mC6ItYBOKcYOycH0wSTaYytJN8prIUtM3p+m6ekWV7GaydOq+8IpVOEqlhh0N3q0MoERWR2+7T2+oTSQsb9uOAEpFAaL2oEcjcIbDo85cMIS90U7KMwxBuYLp+8OKXy0Bco8kAfZSRxFhpQYcVidcZaZVGbGPVM4MCgg6hdFlhLKheiUv13mw6TToGFUFNQk5Bg9Mq361No12c6kCfJxZBbt+htTbZRWoT5GBK3SalspcmmsG3sKp6rVUz3MWtjkZN9jAD7qtHJqojZUt2lw3GeWlykJZeU8scJNIZhb2XiQMGJdShsoAy8RPNx2TYbXe/DNlyvPTmPzECPJ17EgOFNBbV3NeJHGtOKChdnCrKiI7Z5RpVKout8w2Ny+i4SAk5/y7o8HOHx9Y9WWNZTycQX+MYIabRrnZbMdLt9c0qubehyWAj1gAyOyONROQG8oz8LnVuJdXyQiWWt0vfooNAjBRLXHKzfRxDvniMMQtvquoeX1XvCKr2wHhLVTvo1XVxo1HXSF01zfvvlG1vB0IZwjMkhf5PjtCbm5NDDWAqXWLLV8yRo21sskYseqpynjPG2UwlES0aH3U13Ftn++S7TJ8cxicF6CGew7nR3s3/mCx/H9xA5MJqcfHBPasmh16wObd3Jru6BvS18ZSN09YbPdCcmz//S7936YuE1RpgVbnxq3xWdsVxWczHA0tfb5p/EWHVXB+Cr1qS0/j59dg5wnrcA2O9HoP1xzT7nb9A6JjlCCyqMP+h+NO7w6Z/AQ80Ty6uCwAA",
+          "width": 924.14,
+          "x": 356.30,
+          "y": 405.61,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"c2dceaeb007930221a53\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1001,\"y\":16,\"z\":1000,\"width\":176,\"height\":40,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"gold_dim_date.year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"year\"},\"Name\":\"gold_dim_date.year\",\"NativeReferenceName\":\"year\"}]},\"syncGroup\":{\"groupName\":\"year\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"year\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2026L\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 40.00,
+          "queryBinary": "H4sIAAAAAAAEAE2RTU/DMAyG/4vPFdrg1iOjIIRAY0PjgKopSswIaj7kJrCq6n/HToe2W/zxvo/tjLAKzilveqg/Rtgiv5PVrxlpuFNJbb9UxFML1COUgjx2SL0NHurrCu4puCJ/UQ6hhgNU0LBNGiQIndkb6/ZGJeTC2xC5ZzG1FdM61KkoV6HLzotxc4yE/ezNA4VMGjf4eQ4KYJoqWFOISAUyoCLg1P8Al8yrUpRasj9ihYRe46l1VrasvbXeWH8Q0JqsU/OeDxRy5PR8H0Z+88g8nMSLtgjlThs0ueRFI4mdLMSAm+rS7Z0Z4Zdfkyzw6HWXDTYupqFw2DRRxup83SW3NUfUWbyfMZHV/ZOVv1hODP8DnEnwDr8BAAA=",
+          "width": 176.00,
+          "x": 1001.00,
+          "y": 16.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"ca26abad30d108109cc1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":96,\"width\":760,\"height\":300,\"z\":4000,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"X\":[{\"queryRef\":\"gold_fact_shipments.Shipments\",\"active\":true}],\"Y\":[{\"queryRef\":\"gold_fact_shipments.Margin\"}],\"Size\":[{\"queryRef\":\"gold_fact_shipments.Total KM\"}],\"Category\":[{\"queryRef\":\"gold_dim_lanes.origin_city\",\"active\":true},{\"queryRef\":\"gold_dim_lanes.dest_city\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fact_shipments\",\"Type\":0},{\"Name\":\"g1\",\"Entity\":\"gold_dim_lanes\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Shipments\"},\"Name\":\"gold_fact_shipments.Shipments\",\"NativeReferenceName\":\"Shipments\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Margin\"},\"Name\":\"gold_fact_shipments.Margin\",\"NativeReferenceName\":\"Margin\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Total KM\"},\"Name\":\"gold_fact_shipments.Total KM\",\"NativeReferenceName\":\"Total KM\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"origin_city\"},\"Name\":\"gold_dim_lanes.origin_city\",\"NativeReferenceName\":\"origin_city\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g1\"}},\"Property\":\"dest_city\"},\"Name\":\"gold_dim_lanes.dest_city\",\"NativeReferenceName\":\"dest_city\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#4A6FA5'\"}}}}}}}],\"ratioLine\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"displayName\":{\"expr\":{\"Literal\":{\"Value\":\"'Ratio line 1'\"}}},\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#C0CAD6'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Volume against margin'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 300.00,
+          "queryBinary": "H4sIAAAAAAAEAKWU227TQBCGXwXt9aqKDeIil0BAVZsS6iqAqirarqfJoj1Ye6gSRXl3ZjauY1KsgHJjecf/zHy/PZ4t++iMEbYObHy/ZRXgfVTyWwK/+SSiqFaigVbCxluWH9DNHHxQzrJxydln70xOvxEG2JgtGWcTLBM3dHC6XjwJGRdhpRoDNgZ8fLdpUDna8UNS8SqrVmahhYWBhPKvCbWI0NM/cDSlQcYMOAURkgcyMFk3HsLeAxp3yUu4hafDIRvZ7TibedeAz12qzgLGXzheG7yoelZvRFTPVBo8WAltVr/S+VxT4ZfKnoBqRUNEXY3zce5cFPrN1fQEUCcbQurV2eKg6mTsPzMVx1DOK/S3kDQvR1zdoF30RUNUfxY6H6yGEE9gHSRDUL0iOPLfV0Cf757gbK1iS3R5RBlayX/xl8f8GxAeY9h2LnQCKopVr1UEL3TeFRRGYTkq31+T8mGHFyzyQSGcXZJm5pUR+9XyxbvUYHhPh41+4e/b0o54wUv+lv7q9BhpPHAD5Vq0rW6hTvLFLAXmZA1bv+P9Bl+fwWvRUI+ZUziJlTCNzuP+Y/+aaljnZcN+9s4FUmOo23wFHiZrkIk6TiF6JcOVoj1ZkL3fp3e02lsFAAA=",
+          "width": 760.00,
+          "x": 24.00,
+          "y": 96.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"dcb53170503be59acb0d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24,\"y\":14,\"width\":400,\"height\":38,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"NOORDKADE FREIGHT\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"16pt\",\"color\":\"#ffffff\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 38.00,
+          "width": 400.00,
+          "x": 24.00,
+          "y": 14.00,
+          "z": 2000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "Noordkade_Harbor4230108839606289.json"
+}

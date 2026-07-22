@@ -1,0 +1,291 @@
+table gold_fact_shipments
+	lineageTag: 7e287628-537c-4600-9db8-e897966cca56
+	sourceLineageTag: [dbo].[gold_fact_shipments]
+
+	measure Shipments = ```
+			COUNTROWS ( gold_fact_shipments )
+			
+			```
+		formatString: 0
+		lineageTag: 0bb86567-0496-4120-a41b-7b8789843d26
+
+		changedProperty = Name
+
+	measure 'Total Revenue' = ```
+			SUM ( gold_fact_shipments[customer_revenue_eur] )
+			
+			```
+		lineageTag: b5be7e56-7d40-4124-9bba-586cbe82bb65
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Cost' = ```
+			SUM ( gold_fact_shipments[total_cost_eur] )
+			
+			```
+		lineageTag: 9738ef17-de97-4ccb-9ef4-0145c08437c5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margin = ```
+			[Total Revenue] - [Total Cost]
+			
+			```
+		lineageTag: ba1f43d7-6278-4170-847d-ed78b05119d6
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin %' = ```
+			DIVIDE ( [Margin], [Total Revenue] )
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: dc439944-e4fa-48d9-bb4c-26451b11c40a
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Total KM' = ```
+			SUM ( gold_fact_shipments[distance_km] )
+			
+			```
+		formatString: #,0
+		lineageTag: db11d54f-cf73-4dcc-ae81-476b8890e850
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Cost per KM' =
+			
+			DIVIDE ( [Total Cost], [Total KM] )
+		lineageTag: 13401c5b-7c6f-4bec-ab76-55c211d25a67
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OTD %' =
+			
+			DIVIDE (
+			    CALCULATE (
+			        [Shipments],
+			        FILTER (
+			            gold_fact_shipments,
+			            gold_fact_shipments[transit_hours]
+			                <= RELATED ( gold_dim_lanes[std_transit_hours] ) + 6
+			        )
+			    ),
+			    [Shipments]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ccdd2aec-4863-4af8-b764-c0bda6764ab1
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Avg Transit Hours' = ```
+			AVERAGE ( gold_fact_shipments[transit_hours] )
+			
+			```
+		lineageTag: bad70f7d-d1fe-4802-bd0c-97ca2448d64a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue per Tonne' =
+			
+			DIVIDE ( [Total Revenue], SUM ( gold_fact_shipments[weight_kg] ) / 1000 )
+		lineageTag: 54c8c43f-fa20-4cf4-9ad6-6237066cf3a9
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lanes below half average margin' =
+			
+			VAR AvgLaneMargin =
+			    DIVIDE ( [Margin], DISTINCTCOUNT ( gold_dim_lanes[lane_id] ) )
+			RETURN
+			    COUNTROWS (
+			        FILTER ( VALUES ( gold_dim_lanes[lane_id] ), [Margin] < AvgLaneMargin * 0.5 )
+			    )
+		lineageTag: 43b5e9c1-08aa-42b6-860b-8d1ba9046c68
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin per KM' = DIVIDE ( [Margin], [Total KM] )
+		lineageTag: e26ba66f-f0ce-4185-a35d-5ee827a0da44
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column shipment_id
+		dataType: string
+		lineageTag: 2b21b21f-758d-4455-b906-8a43754a8987
+		sourceLineageTag: shipment_id
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 00f680d2-05d7-47b9-969c-0182681c8abc
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column lane_id
+		dataType: string
+		lineageTag: 6ec37dec-fafb-4a72-92b8-45189130c29b
+		sourceLineageTag: lane_id
+		summarizeBy: none
+		sourceColumn: lane_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_id
+		dataType: string
+		lineageTag: 182566d8-9123-4a75-82a3-14aeea14a722
+		sourceLineageTag: carrier_id
+		summarizeBy: none
+		sourceColumn: carrier_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_type
+		dataType: string
+		lineageTag: a56addc7-569c-4d82-be84-8446a35cbfc2
+		sourceLineageTag: service_type
+		summarizeBy: none
+		sourceColumn: service_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column pickup_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0aa6ed49-8e6e-4837-8353-0958c6e2378b
+		sourceLineageTag: pickup_ts
+		summarizeBy: none
+		sourceColumn: pickup_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc2708a5-4e12-4a78-af91-79b961bcd073
+		sourceLineageTag: delivery_ts
+		summarizeBy: none
+		sourceColumn: delivery_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column transit_hours
+		dataType: double
+		lineageTag: 65db940d-2013-484a-908c-2c857abbfad5
+		sourceLineageTag: transit_hours
+		summarizeBy: sum
+		sourceColumn: transit_hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column weight_kg
+		dataType: int64
+		formatString: 0
+		lineageTag: ea06aa9f-a443-4122-b1f9-ff60cf9e8f3e
+		sourceLineageTag: weight_kg
+		summarizeBy: sum
+		sourceColumn: weight_kg
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_km
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dd7a107-5e12-4f5b-97cc-244a6fb5f618
+		sourceLineageTag: distance_km
+		summarizeBy: sum
+		sourceColumn: distance_km
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_cost_eur
+		dataType: double
+		lineageTag: 75596ae9-8124-4724-aae4-f8a4c53a72e2
+		sourceLineageTag: total_cost_eur
+		summarizeBy: sum
+		sourceColumn: total_cost_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customer_revenue_eur
+		dataType: double
+		lineageTag: 39fef04a-d782-45bc-9dcb-ef1bfd1cd214
+		sourceLineageTag: customer_revenue_eur
+		summarizeBy: sum
+		sourceColumn: customer_revenue_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column margin_eur
+		dataType: double
+		lineageTag: d24f9663-4029-4ce7-944e-5a22669afae3
+		sourceLineageTag: margin_eur
+		summarizeBy: sum
+		sourceColumn: margin_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost_per_km_eur
+		dataType: double
+		lineageTag: 21a84152-5f41-46b9-a849-b9df1ab1e89f
+		sourceLineageTag: cost_per_km_eur
+		summarizeBy: sum
+		sourceColumn: cost_per_km_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column on_time_flag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6dd075bd-9fca-44cc-971a-8309c055a675
+		sourceLineageTag: on_time_flag
+		summarizeBy: none
+		sourceColumn: on_time_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_fact_shipments = entity
+		mode: directLake
+		source
+			entityName: gold_fact_shipments
+			expressionSource: 'DirectLake - lh_freight'
+
