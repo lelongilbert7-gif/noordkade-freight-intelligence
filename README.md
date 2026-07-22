@@ -25,6 +25,16 @@ Governance: three workspaces (Dev/Test/Prod), feature-branch Git workflow, PR va
 | Automated CI/CD with fabric-cicd | `cicd/` |
 | Engineering judgment | `DECISIONS.md` |
 
+## Repository layout
+
+| Path | What it is |
+|---|---|
+| `/notebooks`, `/pipelines`, `/warehouse`, `/semantic-model` | Authored source and design documentation |
+| `/workspace` | Live Fabric item definitions, synced by Git integration from NKF-Dev |
+| `/cicd` | fabric-cicd deployment script, parameter file, GitHub Actions workflow |
+| `/data-generator` | Synthetic data generators (batch + streaming) |
+| `DECISIONS.md` | Architecture decision log |
+
 ## Build order (6-week evening plan, trial-capacity safe)
 
 Week 1: run `data-generator/generate_batch_data.py`, upload to lakehouse Files/landing, create control table in the warehouse, build `pl_ingest_metadata_driven` per the framework doc.
