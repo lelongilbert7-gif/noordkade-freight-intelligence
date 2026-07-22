@@ -1,3 +1,4 @@
 ﻿output/
 data-generator/output/
 __pycache__/
+*.pbix
