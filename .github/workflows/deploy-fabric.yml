@@ -1,0 +1,88 @@
+name: Deploy to Fabric
+
+# Branch and release strategy
+#   feature/*  -> pull request to main : validation only, nothing deployed
+#   merge to main                      : deploy to NKF-Test
+#   tag v*                             : deploy to NKF-Prod behind manual approval
+#
+# NKF-Dev is Git-synced directly from Fabric and is never a deployment target.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy
+        required: true
+        default: test
+        type: choice
+        options: [test, prod]
+
+env:
+  AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Lint Python
+        run: |
+          pip install ruff
+          ruff check notebooks/ data-generator/ cicd/ || true
+      - name: Validate deployment configuration
+        run: |
+          pip install fabric-cicd
+          python cicd/deploy.py --environment test --dry-run
+
+  deploy-test:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fabric-cicd
+        run: pip install fabric-cicd
+      - name: Deploy to NKF-Test
+        run: python cicd/deploy.py --environment test
+
+  deploy-prod:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment: prod          # required reviewer configured in repo settings
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fabric-cicd
+        run: pip install fabric-cicd
+      - name: Deploy to NKF-Prod
+        run: python cicd/deploy.py --environment prod
+
+  deploy-manual:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fabric-cicd
+        run: pip install fabric-cicd
+      - name: Deploy to ${{ inputs.environment }}
+        run: python cicd/deploy.py --environment ${{ inputs.environment }}
