@@ -15,6 +15,7 @@ Usage:
 
 import argparse
 import os
+from azure.identity import ClientSecretCredential
 import sys
 from pathlib import Path
 
@@ -69,13 +70,19 @@ def main() -> None:
         print("[dry-run] No changes published.")
         return
 
+    token_credential = ClientSecretCredential(
+        tenant_id=os.environ["AZURE_TENANT_ID"],
+        client_id=os.environ["AZURE_CLIENT_ID"],
+        client_secret=os.environ["AZURE_CLIENT_SECRET"],
+    )
+
     workspace = FabricWorkspace(
         workspace_id=WORKSPACE_IDS[args.environment],
         environment=args.environment,
         repository_directory=str(workspace_dir),
         item_type_in_scope=SCOPES[args.scope],
+        token_credential=token_credential,
     )
-
     publish_all_items(workspace)
 
     # Items deleted from the repo are removed from the target, so environments

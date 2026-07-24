@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "def56cdc-9ae7-40c1-8883-52bb154ce846",
+# META       "default_lakehouse": "42305316-24c1-4368-a3b6-875aa6ae31d6",
 # META       "default_lakehouse_name": "lh_freight",
 # META       "default_lakehouse_workspace_id": "7e236ae2-d6a3-453e-bcd5-fc54c4f753a5",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "def56cdc-9ae7-40c1-8883-52bb154ce846"
+# META           "id": "42305316-24c1-4368-a3b6-875aa6ae31d6"
 # META         }
 # META       ]
 # META     }

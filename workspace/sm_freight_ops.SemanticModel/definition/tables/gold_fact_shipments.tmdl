@@ -287,5 +287,6 @@ table gold_fact_shipments
 		mode: directLake
 		source
 			entityName: gold_fact_shipments
+			schemaName: dbo
 			expressionSource: 'DirectLake - lh_freight'
 

@@ -54,5 +54,6 @@ table gold_dim_lanes
 		mode: directLake
 		source
 			entityName: gold_dim_lanes
+			schemaName: dbo
 			expressionSource: 'DirectLake - lh_freight'
 

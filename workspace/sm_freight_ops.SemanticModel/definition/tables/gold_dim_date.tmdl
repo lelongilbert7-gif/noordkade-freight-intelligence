@@ -116,6 +116,7 @@ table gold_dim_date
 		mode: directLake
 		source
 			entityName: gold_dim_date
+			schemaName: dbo
 			expressionSource: 'DirectLake - lh_freight'
 
 	changedProperty = IsHidden

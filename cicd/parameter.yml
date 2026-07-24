@@ -16,7 +16,7 @@ find_replace:
       prod: "177064c9-bb7e-41bd-a29e-96325856b81d"
 
   # Lakehouse: lh_freight
-  - find_value: "def56cdc-9ae7-40c1-8883-52bb154ce846"
+  - find_value: "42305316-24c1-4368-a3b6-875aa6ae31d6"
     replace_value:
       test: "4d9fd63a-7d14-42e2-ba0d-db7db012bbc0"
       prod: "28f287aa-a84e-4165-88e1-de3fa7cdea33"

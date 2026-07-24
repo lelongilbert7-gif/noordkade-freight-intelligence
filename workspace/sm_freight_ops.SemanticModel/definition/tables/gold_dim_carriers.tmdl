@@ -76,5 +76,6 @@ table gold_dim_carriers
 		mode: directLake
 		source
 			entityName: gold_dim_carriers
+			schemaName: dbo
 			expressionSource: 'DirectLake - lh_freight'
 

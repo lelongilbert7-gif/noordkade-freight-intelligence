@@ -1,0 +1,57 @@
+# fabric-cicd parameter file
+# Location: noordkade-freight-intelligence/workspace/parameter.yml
+#
+# Rebinds Dev-authored items to the target environment on deploy.
+# Three shapes of hardcoded Dev reference are handled:
+#   1. SemanticModel   - GUIDs appear as one OneLake URL path (workspace/lakehouse)
+#   2. Notebook/Pipeline - GUIDs in JSON metadata (default_lakehouse,
+#                          default_lakehouse_workspace_id, known_lakehouses)
+#   3. DataPipeline    - warehouse linkedService: artifactId + SQL endpoint host
+
+find_replace:
+
+  # --- 1. Direct Lake source URL in sm_freight_ops/expressions.tmdl ---
+  - find_value: "7e236ae2-d6a3-453e-bcd5-fc54c4f753a5/42305316-24c1-4368-a3b6-875aa6ae31d6"
+    replace_value:
+      test: "6e368542-3852-4a02-9ed2-117c53d63afa/4d9fd63a-7d14-42e2-ba0d-db7db012bbc0"
+      prod: "177064c9-bb7e-41bd-a29e-96325856b81d/28f287aa-a84e-4165-88e1-de3fa7cdea33"
+    item_type:
+      - "SemanticModel"
+
+  # --- 2a. lh_freight lakehouse GUID in notebook / pipeline metadata ---
+  - find_value: "42305316-24c1-4368-a3b6-875aa6ae31d6"
+    replace_value:
+      test: "4d9fd63a-7d14-42e2-ba0d-db7db012bbc0"
+      prod: "28f287aa-a84e-4165-88e1-de3fa7cdea33"
+    item_type:
+      - "Notebook"
+      - "DataPipeline"
+
+  # --- 2b. NKF-Dev workspace GUID in notebook / pipeline metadata ---
+  - find_value: "7e236ae2-d6a3-453e-bcd5-fc54c4f753a5"
+    replace_value:
+      test: "6e368542-3852-4a02-9ed2-117c53d63afa"
+      prod: "177064c9-bb7e-41bd-a29e-96325856b81d"
+    item_type:
+      - "Notebook"
+      - "DataPipeline"
+
+  # --- 3a. wh_freight SQL endpoint host in the pipeline linkedService ---
+  # Three occurrences in pipeline-content.json. This is the one that caused
+  # SqlFailedToConnect: dev's server was being asked for test's database.
+  - find_value: "lwsglahv627ubizk77bqp37sty-4jvcg7vd2y7elpgv7rkmj52tuu.datawarehouse.fabric.microsoft.com"
+    replace_value:
+      test: "lwsglahv627ubizk77bqp37sty-ikctm3sshabevhwscf6fhvr27i.datawarehouse.fabric.microsoft.com"
+      # TODO: get from NKF-Prod wh_freight -> Settings -> SQL endpoint
+      prod: "REPLACE_WITH_PROD_WAREHOUSE_SQL_ENDPOINT_HOST"
+    item_type:
+      - "DataPipeline"
+
+  # --- 3b. wh_freight artifactId in the pipeline linkedService ---
+  # Pinned explicitly so resolution does not depend on the 00000000 sentinel.
+  - find_value: "1705f5ef-dd93-ab3f-4594-ecfaeb4375c3"
+    replace_value:
+      test: "182b71e9-8a3f-44fa-93d3-199574b194d6"
+      prod: "c2c8af4a-4127-4ba3-9f43-79904cddfc2e"
+    item_type:
+      - "DataPipeline"
