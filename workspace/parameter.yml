@@ -7,6 +7,9 @@
 #   2. Notebook/Pipeline - GUIDs in JSON metadata (default_lakehouse,
 #                          default_lakehouse_workspace_id, known_lakehouses)
 #   3. DataPipeline    - warehouse linkedService: artifactId + SQL endpoint host
+#
+# NOTE: dev lakehouse GUID is 42305316-24c1-4368-a3b6-875aa6ae31d6 (schema-enabled
+# replacement). Older non-schema dev lakehouse def56cdc-... is retired.
 
 find_replace:
 
@@ -37,18 +40,14 @@ find_replace:
       - "DataPipeline"
 
   # --- 3a. wh_freight SQL endpoint host in the pipeline linkedService ---
-  # Three occurrences in pipeline-content.json. This is the one that caused
-  # SqlFailedToConnect: dev's server was being asked for test's database.
   - find_value: "lwsglahv627ubizk77bqp37sty-4jvcg7vd2y7elpgv7rkmj52tuu.datawarehouse.fabric.microsoft.com"
     replace_value:
       test: "lwsglahv627ubizk77bqp37sty-ikctm3sshabevhwscf6fhvr27i.datawarehouse.fabric.microsoft.com"
-      # TODO: get from NKF-Prod wh_freight -> Settings -> SQL endpoint
-      prod: "REPLACE_WITH_PROD_WAREHOUSE_SQL_ENDPOINT_HOST"
+      prod: "lwsglahv627ubizk77bqp37sty-zfshaf36xo6udiu6syzfqvvydu.datawarehouse.fabric.microsoft.com"
     item_type:
       - "DataPipeline"
 
   # --- 3b. wh_freight artifactId in the pipeline linkedService ---
-  # Pinned explicitly so resolution does not depend on the 00000000 sentinel.
   - find_value: "1705f5ef-dd93-ab3f-4594-ecfaeb4375c3"
     replace_value:
       test: "182b71e9-8a3f-44fa-93d3-199574b194d6"
