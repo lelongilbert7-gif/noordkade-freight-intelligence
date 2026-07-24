@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Lakehouse",
-    "displayName": "lh_freight_v2"
+    "displayName": "lh_freight_old"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "a6ae31d6-875a-a3b6-4368-24c142305316"
+    "logicalId": "154ce846-52bb-8883-40c1-9ae7def56cdc"
   }
 }
