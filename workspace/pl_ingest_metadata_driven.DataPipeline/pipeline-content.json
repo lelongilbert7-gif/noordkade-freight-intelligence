@@ -117,7 +117,7 @@
                             "properties": {
                               "type": "Lakehouse",
                               "typeProperties": {
-                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "artifactId": "42305316-24c1-4368-a3b6-875aa6ae31d6",
                                 "workspaceId": "00000000-0000-0000-0000-000000000000",
                                 "rootFolder": "Files"
                               },
@@ -145,7 +145,7 @@
                             "properties": {
                               "type": "Lakehouse",
                               "typeProperties": {
-                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "artifactId": "42305316-24c1-4368-a3b6-875aa6ae31d6",
                                 "workspaceId": "00000000-0000-0000-0000-000000000000",
                                 "rootFolder": "Tables"
                               },
@@ -212,7 +212,7 @@
                             "properties": {
                               "type": "Lakehouse",
                               "typeProperties": {
-                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "artifactId": "42305316-24c1-4368-a3b6-875aa6ae31d6",
                                 "workspaceId": "00000000-0000-0000-0000-000000000000",
                                 "rootFolder": "Files"
                               },
@@ -240,7 +240,7 @@
                             "properties": {
                               "type": "Lakehouse",
                               "typeProperties": {
-                                "artifactId": "154ce846-52bb-8883-40c1-9ae7def56cdc",
+                                "artifactId": "42305316-24c1-4368-a3b6-875aa6ae31d6",
                                 "workspaceId": "00000000-0000-0000-0000-000000000000",
                                 "rootFolder": "Tables"
                               },
